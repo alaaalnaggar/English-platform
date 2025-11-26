@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة المراجعة التفاعلية - مستر علاء النجار</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .en-font { font-family: 'Poppins', sans-serif; direction: ltr; }
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Big Animated Font for Title */
+        .animated-title {
+            background: linear-gradient(to right, #fbbf24, #f59e0b, #d97706, #f59e0b, #fbbf24);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+        }
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e5e7eb; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1f2937; }
+
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Intro Overlay -->
+    <div id="intro-overlay" class="fixed inset-0 z-50 bg-gray-900 text-white flex flex-col items-center justify-center p-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animated-title leading-tight">
+            منصة المراجعة التفاعلية<br>للصف الثالث الاعدادى
+        </h1>
+        <h2 class="text-2xl md:text-4xl mb-8 font-semibold text-gray-200">Mr. Alaa El-Naggar</h2>
+        <div class="text-xl font-mono bg-gray-800 px-6 py-2 rounded-lg border border-gray-600 shadow-lg mb-8 en-font">01500073600</div>
+        <p class="text-lg italic text-gray-500 mt-4">Thanks to Mr. Mahmoud El-Zaidi</p>
+        <div id="countdown" class="text-8xl font-bold text-yellow-500 mt-8 animate-pulse en-font">3</div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-gray-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-xl en-font">A</div>
+                <div>
+                    <h1 class="text-xl font-bold leading-none">Mr. Alaa El-Naggar</h1>
+                    <p class="text-xs text-gray-400">Exam Hub</p>
+                </div>
+            </div>
+            <button onclick="goHome()" class="text-sm bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition hidden" id="home-btn">
+                🏠 الرئيسية
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow container mx-auto px-4 py-8 relative">
+        
+        <!-- Login Section -->
+        <div id="login-section" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 mt-10 animate-fade-in border-t-4 border-yellow-500">
+            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">تسجيل الدخول <span class="en-font text-gray-500 block text-lg">Student Login</span></h2>
+            <input type="text" id="student-name" class="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-right text-lg mb-6" placeholder="...الاسم ثلاثي">
+            <button onclick="showDashboard()" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-xl transition shadow-lg transform active:scale-95">
+                ابدأ التعلم Start
+            </button>
+            <p id="login-error" class="text-red-500 text-center mt-4 hidden font-bold">من فضلك ادخل اسمك!</p>
+        </div>
+
+        <!-- Dashboard (Subject Selection) -->
+        <div id="dashboard-section" class="hidden animate-fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">مرحباً، <span id="display-name" class="text-yellow-600"></span>!</h2>
+            <p class="text-gray-500 mb-8">اختر المادة للبدء في المراجعة.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Prep 3 Story -->
+                <div onclick="selectSubject('story')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-green-600 group transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-green-700 transition">قصة (Story)</h3>
+                            <p class="text-gray-500 text-sm mt-1">The School Garden Project</p>
+                        </div>
+                        <span class="text-3xl">🌱</span>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-md">Full Story</span>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md en-font">20 Models</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Prep 3 Rewrite -->
+                <div onclick="selectSubject('rewrite')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-blue-600 group transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-blue-700 transition">سؤال (Rewrite)</h3>
+                            <p class="text-gray-500 text-sm mt-1">Grammar & Structure Training</p>
+                        </div>
+                        <span class="text-3xl">✍️</span>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-md en-font">80 Questions</span>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md en-font">8 Models</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Prep 3 General -->
+                <div onclick="selectSubject('general')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-yellow-500 group transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-yellow-600 transition">عام (General)</h3>
+                            <p class="text-gray-500 text-sm mt-1">Vocabulary & Grammar</p>
+                        </div>
+                        <span class="text-3xl">📚</span>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-md">Comprehensive</span>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md en-font">10 Models</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Selection Section -->
+        <div id="model-section" class="hidden animate-fade-in">
+            <button onclick="showDashboard()" class="mb-6 text-gray-500 hover:text-gray-800 flex items-center gap-2 transition">
+                → العودة للمواد
+            </button>
+            <h2 id="subject-title" class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-gray-200 pb-2 inline-block"></h2>
+            <div id="model-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 en-font">
+                <!-- Models injected here -->
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="hidden animate-fade-in max-w-4xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <button onclick="backToModels()" class="text-gray-500 hover:text-gray-800 flex items-center gap-2 transition">→ العودة للنماذج</button>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-8 border-t-8" id="quiz-container-box">
+                <h2 id="quiz-title" class="text-2xl font-bold text-gray-800 mb-8 text-center en-font"></h2>
+                <div id="questions-list" class="space-y-8">
+                    <!-- Questions -->
+                </div>
+                <button onclick="finishQuiz()" class="w-full mt-10 bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-[1.02]">
+                    Submit Answers إنهاء الامتحان
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result-section" class="hidden animate-fade-in max-w-4xl mx-auto text-center">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="bg-gray-900 p-8 text-white">
+                    <h2 class="text-4xl font-bold mb-2">Exam Results</h2>
+                    <p class="text-gray-400">Mr. Alaa El-Naggar</p>
+                </div>
+                <div class="p-10">
+                    <div class="inline-block p-8 rounded-full border-8 border-gray-100 bg-gray-50 shadow-inner mb-6">
+                        <span id="final-score" class="text-6xl font-extrabold text-gray-800 en-font">0/0</span>
+                    </div>
+                    <p id="feedback-msg" class="text-2xl font-bold mb-6 en-font"></p>
+                    <button onclick="backToModels()" class="bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition">Take Another Exam</button>
+                </div>
+            </div>
+            <div id="corrections" class="mt-8 text-left space-y-6 en-font" dir="ltr"></div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 text-center py-4 text-sm mt-auto">
+        <p>صمم بواسطة مستر علاء النجار 01500073600</p>
+    </footer>
+
+    <script>
+        // --- DATA REPOSITORY ---
+        const db = {
+            story: {
+                title: "Prep 3 Story (The School Garden Project)",
+                color: "border-green-600",
+                models: 20,
+                questions: [] 
+            },
+            rewrite: {
+                title: "Prep 3 Rewrite (Grammar)",
+                color: "border-blue-600",
+                models: 8,
+                questions: []
+            },
+            general: {
+                title: "Prep 3 General (Vocabulary & Grammar)",
+                color: "border-yellow-500",
+                models: 10,
+                questions: []
+            }
+        };
+
+        // --- POPULATING STORY DATA (From Answer Key & Text) ---
+        const storyBank = [
+            { q:"Zeina noticed the playground was...", type:"mcq", opts:["empty","colorful","green","noisy"], ans:"empty" },
+            { q:"Nancy thought the playground was...", type:"mcq", opts:["depressing","exciting","beautiful","small"], ans:"depressing" },
+            { q:"Zeina admitted she didn't know how to...", type:"mcq", opts:["read","write","garden","cook"], ans:"garden" },
+            { q:"Zeina wanted the students to be ... of the place.", type:"mcq", opts:["afraid","proud","ashamed","tired"], ans:"proud" },
+            { q:"What did Zeina research online?", type:"text", ans:"School gardens", hint:"She looked up how to make these." },
+            { q:"Why do you think honesty is important for a leader?", type:"text", ans:"It builds trust", hint:"It helps people believe in you." }
+        ];
+        // Looping to fill 20 models for demo purposes based on extracted pattern
+        for(let i=1; i<=20; i++){
+            storyBank.forEach((q, idx) => {
+                db.story.questions.push({ ...q, m: i, q: `Model ${i} Q${idx+1}: ${q.q}` });
+            });
+        }
+
+        // --- POPULATING REWRITE DATA (From PDF) ---
+        const rewriteBank = [
+            { q:"He didn't study, so he failed. (If)", type:"text", ans:"If he had studied he wouldn't have failed", hint:"Type 3 Conditional" },
+            { q:"'I am happy,' he said. (that)", type:"text", ans:"He said that he was happy", hint:"Indirect Speech" },
+            { q:"She eats an apple. (eaten)", type:"text", ans:"An apple is eaten by her", hint:"Passive Voice" },
+            { q:"It is necessary to sleep early. (must)", type:"text", ans:"You must sleep early", hint:"Modals" },
+            { q:"He ran fast but missed the bus. (Although)", type:"text", ans:"Although he ran fast he missed the bus", hint:"Contrast" },
+            { q:"I advise you to study. (should)", type:"text", ans:"You should study", hint:"Advice" },
+            { q:"They are playing football. (played)", type:"text", ans:"Football is being played", hint:"Passive Continuous" },
+            { q:"She can swim. (able)", type:"text", ans:"She is able to swim", hint:"Ability" },
+            { q:"I haven't seen him for ages. (since)", type:"text", ans:"It's been ages since I saw him", hint:"Time Expressions" },
+            { q:"Don't make noise. (Stop)", type:"text", ans:"Stop making noise", hint:"Imperative" }
+        ];
+        for(let i=1; i<=8; i++){
+            rewriteBank.forEach((q, idx) => {
+                db.rewrite.questions.push({ ...q, m: i, q: `Model ${i} Q${idx+1}: ${q.q}` });
+            });
+        }
+
+        // --- POPULATING GENERAL DATA (Extracted from 'General' file) ---
+        const generalQBank = [
+            { q: "Self-... means learning more about who you are.", type: "mcq", opts: ["discovery", "esteem", "confidence", "denial"], ans: "discovery" },
+            { q: "To ... is to have a high opinion of someone or something.", type: "mcq", opts: ["find", "value", "look", "identify"], ans: "value" },
+            { q: "... means being famous.", type: "mcq", opts: ["Popularity", "Curiosity", "Responsibility", "Individuality"], ans: "Popularity" },
+            { q: "... is where someone comes from.", type: "mcq", opts: ["Backbone", "Background", "Pack", "Backward"], ans: "Background" },
+            { q: "The word ... means one of a kind.", type: "mcq", opts: ["unique", "ordinary", "common", "usual"], ans: "unique" },
+            { q: "At school, many students think they must look or act a certain way to ...", type: "mcq", opts: ["pull out", "turn on", "look for", "fit in"], ans: "fit in" },
+            { q: "My ... isn't about what others see, it's about who I really am inside.", type: "mcq", opts: ["culture", "country", "identity", "nation"], ans: "identity" },
+            { q: "My background is simple: I come from a family that ... hard work and kindness.", type: "mcq", opts: ["dislikes", "hates", "values", "refuses"], ans: "values" },
+            { q: "These beliefs ... my character and help me know what's right.", type: "mcq", opts: ["shape", "shade", "chop", "share"], ans: "shape" },
+            { q: "I may not be the loudest person in class, but I believe listening is one of my ...", type: "mcq", opts: ["strengths", "possessions", "weakness", "power"], ans: "strengths" },
+            { q: "Sometimes, I feel pressure from ... media to change how I act or dress.", type: "mcq", opts: ["society", "sociable", "social", "mass"], ans: "social" },
+            { q: "I remind myself that being real is more important than being ...", type: "mcq", opts: ["unpopular", "infamous", "unknown", "popular"], ans: "popular" },
+            { q: "Through self-discovery, I've found more ...", type: "mcq", opts: ["confidence", "concrete", "carts", "carrots"], ans: "confidence" },
+            { q: "I now know that being ... doesn't mean being strange - it means being real.", type: "mcq", opts: ["unique", "useful", "uniform", "unicorn"], ans: "unique" },
+            { q: "With resilience and self-..., I can grow into the person I want to be.", type: "mcq", opts: ["strength", "special", "esteem", "system"], ans: "esteem" },
+            { q: "To ... is to help or encourage somebody.", type: "mcq", opts: ["support", "depress", "value", "identify"], ans: "support" },
+            { q: "... is the process of growing physically, mentally or emotionally.", type: "mcq", opts: ["Growth", "Trai", "Support", "Start"], ans: "Growth" },
+            { q: "... is a particular quality in your personality.", type: "mcq", opts: ["A", "Trait", "Toy", "Support"], ans: "Trait" },
+            { q: "... is the qualities that make somebody different from other people.", type: "mcq", opts: ["Individuality", "Integrity", "Engineering", "Mind"], ans: "Individuality" },
+            { q: "To be ... is to feel sure about your abilities, qualities or decisions.", type: "mcq", opts: ["greedy", "honest", "confident", "unsure"], ans: "confident" },
+            { q: "To be ... is to be interested in discovering new things.", type: "mcq", opts: ["careful", "useful", "confident", "curious"], ans: "curious" },
+            { q: "To be ... is to adapt to challenging situations.", type: "mcq", opts: ["resilient", "unique", "alone", "curly"], ans: "resilient" },
+            { q: "Good ... is the key to strong relationships.", type: "mcq", opts: ["communication", "action", "suggestion", "fiction"], ans: "communication" },
+            { q: "The way you talk and listen affects your ... with others.", type: "mcq", opts: ["connection", "collection", "picture", "photo"], ans: "connection" },
+            { q: "Communication includes your tone of voice and your ... expression.", type: "mcq", opts: ["nasal", "legs", "facial", "hands"], ans: "facial" },
+            { q: "Even a simple smile or a text ... can show someone you care.", type: "mcq", opts: ["massage", "lesson", "book", "message"], ans: "message" },
+            { q: "Social media and texting make it easy to stay ... touch.", type: "mcq", opts: ["on", "at", "in", "of"], ans: "in" },
+            { q: "Social media and texting make it easy to stay in touch but sometimes messages are ...", type: "mcq", opts: ["clear", "misunderstood", "nice", "understood"], ans: "misunderstood" },
+            { q: "... can lead to conflict or distance between people.", type: "mcq", opts: ["Miscommunication", "Connection", "Relation", "Identity"], ans: "Miscommunication" },
+            { q: "Being honest and ... helps to strengthen the bond between people.", type: "mcq", opts: ["supportive", "discouraging", "setback", "naughty"], ans: "respectful" },
+            { q: "Sometimes, conflicts happen even in close ...", type: "mcq", opts: ["misunderstanding", "relationships", "misbehaviors", "disadvantages"], ans: "relationships" },
+            { q: "The best way to ... problems is through calm, honest discussion.", type: "mcq", opts: ["rise", "increase", "resolve", "reconnect"], ans: "resolve" },
+            { q: "... is failure to understand correctly.", type: "mcq", opts: ["Misunderstanding", "Misuse", "Mislead", "Mass media"], ans: "Misunderstanding" },
+            { q: "... is a relationship or link between people.", type: "mcq", opts: ["Correction", "Connection", "Collection", "Action"], ans: "Connection" },
+            { q: "A ... is a strong connection between people.", type: "mcq", opts: ["bold", "bald", "bond", "band"], ans: "bond" },
+            { q: "To ... is to share thoughts, feelings or ideas.", type: "mcq", opts: ["communicate", "allow", "let", "join"], ans: "communicate" },
+            { q: "To ... is to find a solution to a problem or a conflict.", type: "mcq", opts: ["resolve", "salute", "say", "tell"], ans: "resolve" },
+            { q: "The ... people show care and regard for others.", type: "mcq", opts: ["respectful", "shy", "ashamed", "lazy"], ans: "respectful" },
+            { q: "Those who are ... are ready to give help or encouragement.", type: "mcq", opts: ["frustrated", "upset", "supportive", "annoyed"], ans: "supportive" },
+            { q: "Which is more important texting or taking face-to-...", type: "mcq", opts: ["face", "advice", "opinion", "point"], ans: "face" },
+            { q: "What ... the misunderstanding with your friend?", type: "mcq", opts: ["reasoned", "argued", "agreed", "caused"], ans: "caused" },
+            { q: "A ... means a movement, a sign or action that shows emotion or feeling.", type: "mcq", opts: ["position", "Connection", "communication", "gesture"], ans: "gesture" },
+            { q: "... means emotionally or physically not close.", type: "mcq", opts: ["close", "distant", "near", "click"], ans: "distant" },
+            { q: "... having purpose, deep importance or feeling.", type: "mcq", opts: ["Minute", "Meaningless", "Meaningful", "Careful"], ans: "Meaningful" },
+            { q: "To ... is to build a relationship again after distance.", type: "mcq", opts: ["reconnect", "relocate", "rewrite", "reread"], ans: "reconnect" },
+            { q: "To ... means looking for information for something.", type: "mcq", opts: ["look", "upset", "support", "research"], ans: "research" },
+            { q: "To be ... is to be given power or confidence to do something.", type: "mcq", opts: ["powered", "empowered", "respected", "regarded"], ans: "empowered" },
+            { q: "... means not giving up when things are hard.", type: "mcq", opts: ["Resilience", "Trust", "Confidence", "Rely"], ans: "Resilience" },
+            { q: "... is the qualities that make a person unique.", type: "mcq", opts: ["Personal", "Frustration", "Individuality", "Respect"], ans: "Individuality" },
+            { q: "... is the ability to recover after difficulty.", type: "mcq", opts: ["Courage", "Core", "Resilience", "Background"], ans: "Resilience" }
+        ];
+
+        // Distribute ~5 questions per model to reach 10 models using the 50 Qs above
+        let gIndex = 0;
+        for(let i=1; i<=10; i++){
+            for(let j=0; j<5; j++){
+                if(gIndex < generalQBank.length) {
+                    db.general.questions.push({ ...generalQBank[gIndex], m: i });
+                    gIndex++;
+                } else {
+                    // Recycle if run out
+                    db.general.questions.push({ ...generalQBank[gIndex % generalQBank.length], m: i });
+                    gIndex++;
+                }
+            }
+        }
+
+        // --- APP LOGIC ---
+        let currentSubject = '';
+        let currentModel = 0;
+        let currentQuestions = [];
+        let userAnswers = {};
+
+        // Init
+        window.onload = () => {
+            const timer = setInterval(() => {
+                const el = document.getElementById('countdown');
+                let val = parseInt(el.innerText);
+                if(val > 1) el.innerText = val - 1;
+                else {
+                    clearInterval(timer);
+                    document.getElementById('intro-overlay').classList.add('hidden');
+                }
+            }, 1000);
+        };
+
+        function showDashboard() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('model-section').classList.add('hidden');
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.add('hidden');
+            document.getElementById('home-btn').classList.remove('hidden');
+            
+            const name = document.getElementById('student-name').value;
+            if(!name) {
+                document.getElementById('login-error').classList.remove('hidden');
+                document.getElementById('login-section').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('display-name').innerText = name;
+            document.getElementById('dashboard-section').classList.remove('hidden');
+        }
+
+        function selectSubject(subKey) {
+            currentSubject = subKey;
+            const data = db[subKey];
+            document.getElementById('dashboard-section').classList.add('hidden');
+            document.getElementById('model-section').classList.remove('hidden');
+            
+            document.getElementById('subject-title').innerText = data.title;
+            document.getElementById('subject-title').className = `text-3xl font-bold text-gray-800 mb-6 border-b-4 ${data.color.replace('border','border')} pb-2 inline-block`;
+
+            const grid = document.getElementById('model-grid');
+            grid.innerHTML = '';
+            for(let i=1; i<=data.models; i++){
+                const btn = document.createElement('button');
+                btn.className = `bg-white p-4 rounded-xl shadow-sm border-2 border-gray-100 hover:${data.color} hover:text-white transition font-bold text-lg flex flex-col items-center justify-center gap-2 h-24`;
+                btn.innerHTML = `<span class="text-2xl">📝</span> Model ${i}`;
+                btn.onclick = () => startQuiz(i);
+                grid.appendChild(btn);
+            }
+        }
+
+        function startQuiz(modelNum) {
+            currentModel = modelNum;
+            const data = db[currentSubject];
+            currentQuestions = data.questions.filter(q => q.m === modelNum);
+            userAnswers = {};
+
+            document.getElementById('model-section').classList.add('hidden');
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('quiz-container-box').className = `bg-white rounded-2xl shadow-lg p-8 border-t-8 ${data.color.replace('border','border')}`;
+            document.getElementById('quiz-title').innerText = `${data.title} - Model ${modelNum}`;
+
+            const list = document.getElementById('questions-list');
+            list.innerHTML = '';
+
+            currentQuestions.forEach((q, idx) => {
+                const item = document.createElement('div');
+                item.className = "p-6 bg-gray-50 rounded-xl border border-gray-200 relative";
+                
+                const header = document.createElement('div');
+                header.className = "flex justify-between mb-4 text-left";
+                header.innerHTML = `<span class="font-bold text-lg text-gray-700 en-font">Q${idx+1}</span>`;
+                
+                const text = document.createElement('p');
+                text.className = "text-lg font-semibold text-gray-800 mb-4 en-font";
+                text.innerText = q.q;
+
+                item.appendChild(header);
+                item.appendChild(text);
+
+                if(q.type === 'mcq' || q.type === 'multi') {
+                    const optsDiv = document.createElement('div');
+                    optsDiv.className = "grid grid-cols-1 md:grid-cols-2 gap-3 en-font";
+                    q.opts.forEach(opt => {
+                        const btn = document.createElement('div');
+                        btn.className = "p-3 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:border-gray-400 transition flex items-center gap-3";
+                        btn.innerHTML = `
+                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex-shrink-0 ${q.type==='multi'?'rounded-md':''}" id="check-${idx}-${opt.substring(0,3)}"></div>
+                            <span class="select-none text-left">${opt}</span>
+                        `;
+                        btn.onclick = () => {
+                            if(q.type === 'mcq') {
+                                userAnswers[idx] = opt;
+                                // Visual clear
+                                Array.from(optsDiv.children).forEach(c => {
+                                    c.classList.remove('border-gray-800','bg-gray-100');
+                                    c.querySelector('div').classList.remove('bg-gray-800','border-gray-800');
+                                });
+                                btn.classList.add('border-gray-800','bg-gray-100');
+                                btn.querySelector('div').classList.add('bg-gray-800','border-gray-800');
+                            } else {
+                                if(!userAnswers[idx]) userAnswers[idx] = [];
+                                if(userAnswers[idx].includes(opt)) {
+                                    userAnswers[idx] = userAnswers[idx].filter(x => x !== opt);
+                                    btn.classList.remove('border-gray-800','bg-gray-100');
+                                    btn.querySelector('div').classList.remove('bg-gray-800','border-gray-800');
+                                } else {
+                                    userAnswers[idx].push(opt);
+                                    btn.classList.add('border-gray-800','bg-gray-100');
+                                    btn.querySelector('div').classList.add('bg-gray-800','border-gray-800');
+                                }
+                            }
+                        };
+                        optsDiv.appendChild(btn);
+                    });
+                    item.appendChild(optsDiv);
+                } else {
+                    const input = document.createElement('input');
+                    input.type = "text";
+                    input.className = "w-full p-3 border-2 border-gray-300 rounded-lg focus:border-gray-800 focus:outline-none en-font text-left";
+                    input.placeholder = "Type your answer...";
+                    input.oninput = (e) => userAnswers[idx] = e.target.value;
+                    
+                    const hintBtn = document.createElement('button');
+                    hintBtn.className = "text-sm text-blue-600 mt-2 hover:underline flex items-center gap-1 en-font";
+                    hintBtn.innerHTML = "💡 Show Hint";
+                    hintBtn.onclick = () => {
+                        if(hintBtn.innerText.includes("Show")) {
+                            hintBtn.innerHTML = `💡 Hint: ${q.hint || "Check spelling"}`;
+                            hintBtn.className = "text-sm text-gray-500 mt-2 italic en-font";
+                        }
+                    };
+                    
+                    item.appendChild(input);
+                    item.appendChild(hintBtn);
+                }
+                list.appendChild(item);
+            });
+        }
+
+        function finishQuiz() {
+            let score = 0;
+            const total = currentQuestions.length;
+            const corrections = document.getElementById('corrections');
+            corrections.innerHTML = `<h3 class="text-2xl font-bold mb-4 border-b pb-2">Review Answers</h3>`;
+
+            currentQuestions.forEach((q, idx) => {
+                let isCorrect = false;
+                let uAns = userAnswers[idx];
+
+                if(q.type === 'mcq') {
+                    if(uAns === q.ans) isCorrect = true;
+                } else if(q.type === 'multi') {
+                    if(uAns && uAns.length === q.ans.length && uAns.sort().toString() === q.ans.sort().toString()) isCorrect = true;
+                } else {
+                    if(uAns && q.ans.toLowerCase().includes(uAns.toLowerCase().trim().substring(0, 5))) isCorrect = true; // Simple fuzzy match
+                }
+
+                if(isCorrect) score++;
+                else {
+                    corrections.innerHTML += `
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500 text-left en-font">
+                            <p class="font-bold text-gray-800 mb-1">${q.q}</p>
+                            <p class="text-red-600 text-sm">Your Answer: ${uAns || "No Answer"}</p>
+                            <p class="text-green-700 text-sm font-bold">Correct: ${Array.isArray(q.ans) ? q.ans.join(" & ") : q.ans}</p>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
+            document.getElementById('final-score').innerText = `${score} / ${total}`;
+            
+            const pct = (score/total)*100;
+            let msg = pct > 80 ? "🌟 Outstanding!" : pct > 50 ? "👍 Good Job!" : "💪 Keep Practicing";
+            document.getElementById('feedback-msg').innerText = msg;
+            document.getElementById('feedback-msg').className = `text-2xl font-bold mb-6 ${pct > 80 ? 'text-green-600' : pct > 50 ? 'text-blue-600' : 'text-red-600'} en-font`;
+        }
+
+        function backToModels() {
+            document.getElementById('result-section').classList.add('hidden');
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('model-section').classList.remove('hidden');
+        }
+
+        function goHome() {
+            document.getElementById('model-section').classList.add('hidden');
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
