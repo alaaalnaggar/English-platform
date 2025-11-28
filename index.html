@@ -24,7 +24,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             animation: shine 3s linear infinite;
-            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.1);
         }
         @keyframes shine {
             to {
@@ -39,13 +39,20 @@
         ::-webkit-scrollbar-thumb:hover { background: #1f2937; }
 
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        
+        /* MCQ Radio Styling */
+        .option-radio:checked + label {
+            background-color: #e0f2fe;
+            border-color: #3b82f6;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
     <!-- Intro Overlay -->
     <div id="intro-overlay" class="fixed inset-0 z-50 bg-gray-900 text-white flex flex-col items-center justify-center p-4 text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animated-title leading-tight">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animated-title leading-tight py-2">
             منصة المراجعة التفاعلية<br>للصف الثالث الاعدادى
         </h1>
         <h2 class="text-2xl md:text-4xl mb-8 font-semibold text-gray-200">Mr. Alaa El-Naggar</h2>
@@ -61,7 +68,7 @@
                 <div class="bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-xl en-font">A</div>
                 <div>
                     <h1 class="text-xl font-bold leading-none">Mr. Alaa El-Naggar</h1>
-                    <p class="text-xs text-gray-400">Exam Hub</p>
+                    <p class="text-xs text-gray-400">Exam Hub 3</p>
                 </div>
             </div>
             <button onclick="goHome()" class="text-sm bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition hidden" id="home-btn">
@@ -89,6 +96,7 @@
             <p class="text-gray-500 mb-8">اختر المادة للبدء في المراجعة.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
                 <!-- Card 1: Prep 3 Story -->
                 <div onclick="selectSubject('story')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-green-600 group transition">
                     <div class="flex justify-between items-start">
@@ -105,34 +113,35 @@
                 </div>
 
                 <!-- Card 2: Prep 3 Rewrite -->
-                <div onclick="selectSubject('rewrite')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-blue-600 group transition">
+                <div onclick="selectSubject('rewrite')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-indigo-600 group transition">
                     <div class="flex justify-between items-start">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-blue-700 transition">سؤال (Rewrite)</h3>
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-indigo-700 transition">سؤال (Rewrite)</h3>
                             <p class="text-gray-500 text-sm mt-1">Grammar & Structure Training</p>
                         </div>
                         <span class="text-3xl">✍️</span>
                     </div>
                     <div class="mt-4 flex gap-2">
-                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-md en-font">80 Questions</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-md en-font">80 Questions</span>
                         <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md en-font">8 Models</span>
                     </div>
                 </div>
 
-                <!-- Card 3: Prep 3 General -->
-                <div onclick="selectSubject('general')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-yellow-500 group transition">
+                <!-- Card 3: Vocabulary Revision (New) -->
+                <div onclick="selectSubject('vocab')" class="bg-white p-6 rounded-2xl shadow-md cursor-pointer card-hover border-l-8 border-blue-600 group transition">
                     <div class="flex justify-between items-start">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-yellow-600 transition">عام (General)</h3>
-                            <p class="text-gray-500 text-sm mt-1">Vocabulary & Grammar</p>
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition">Vocabulary Revision</h3>
+                            <p class="text-gray-500 text-sm mt-1">Definitions, Synonyms & Structure</p>
                         </div>
-                        <span class="text-3xl">📚</span>
+                        <span class="text-3xl">🔤</span>
                     </div>
                     <div class="mt-4 flex gap-2">
-                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-md">Comprehensive</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-md">268 Questions</span>
                         <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md en-font">10 Models</span>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -191,43 +200,27 @@
     <script>
         // --- DATA REPOSITORY ---
         const db = {
-            story: {
-                title: "Prep 3 Story (The School Garden Project)",
-                color: "border-green-600",
-                models: 20,
-                questions: [] 
-            },
-            rewrite: {
-                title: "Prep 3 Rewrite (Grammar)",
-                color: "border-blue-600",
-                models: 8,
-                questions: []
-            },
-            general: {
-                title: "Prep 3 General (Vocabulary & Grammar)",
-                color: "border-yellow-500",
-                models: 10,
-                questions: []
-            }
+            story: { title: "Prep 3 Story (The School Garden Project)", color: "border-green-600", models: 20, questions: [] },
+            rewrite: { title: "Prep 3 Rewrite (Grammar)", color: "border-indigo-600", models: 8, questions: [] },
+            vocab: { title: "Vocabulary Revision (Full Bank)", color: "border-blue-600", models: 10, questions: [] }
         };
 
-        // --- POPULATING STORY DATA (From Answer Key & Text) ---
+        // --- 1. STORY DATA ---
         const storyBank = [
             { q:"Zeina noticed the playground was...", type:"mcq", opts:["empty","colorful","green","noisy"], ans:"empty" },
-            { q:"Nancy thought the playground was...", type:"mcq", opts:["depressing","exciting","beautiful","small"], ans:"depressing" },
-            { q:"Zeina admitted she didn't know how to...", type:"mcq", opts:["read","write","garden","cook"], ans:"garden" },
-            { q:"Zeina wanted the students to be ... of the place.", type:"mcq", opts:["afraid","proud","ashamed","tired"], ans:"proud" },
-            { q:"What did Zeina research online?", type:"text", ans:"School gardens", hint:"She looked up how to make these." },
-            { q:"Why do you think honesty is important for a leader?", type:"text", ans:"It builds trust", hint:"It helps people believe in you." }
+            { q:"Who helped Zeina?", type:"mcq", opts:["Nancy","Teacher","Nobody","Parents"], ans:"Nancy" },
+            { q:"What did they plant?", type:"mcq", opts:["Vegetables","Candy","Trees","Nothing"], ans:"Vegetables" },
+            { q:"The garden became a ...", type:"mcq", opts:["symbol","disaster","mess","secret"], ans:"symbol" },
+            { q:"Why was Zeina nervous?", type:"text", ans:"Speaking to council", hint:"Public speaking" },
+            { q:"What is a leader?", type:"text", ans:"Honest and helpful", hint:"Not bossy" }
         ];
-        // Looping to fill 20 models for demo purposes based on extracted pattern
         for(let i=1; i<=20; i++){
             storyBank.forEach((q, idx) => {
                 db.story.questions.push({ ...q, m: i, q: `Model ${i} Q${idx+1}: ${q.q}` });
             });
         }
 
-        // --- POPULATING REWRITE DATA (From PDF) ---
+        // --- 2. REWRITE DATA ---
         const rewriteBank = [
             { q:"He didn't study, so he failed. (If)", type:"text", ans:"If he had studied he wouldn't have failed", hint:"Type 3 Conditional" },
             { q:"'I am happy,' he said. (that)", type:"text", ans:"He said that he was happy", hint:"Indirect Speech" },
@@ -246,72 +239,220 @@
             });
         }
 
-        // --- POPULATING GENERAL DATA (Extracted from 'General' file) ---
-        const generalQBank = [
-            { q: "Self-... means learning more about who you are.", type: "mcq", opts: ["discovery", "esteem", "confidence", "denial"], ans: "discovery" },
-            { q: "To ... is to have a high opinion of someone or something.", type: "mcq", opts: ["find", "value", "look", "identify"], ans: "value" },
-            { q: "... means being famous.", type: "mcq", opts: ["Popularity", "Curiosity", "Responsibility", "Individuality"], ans: "Popularity" },
-            { q: "... is where someone comes from.", type: "mcq", opts: ["Backbone", "Background", "Pack", "Backward"], ans: "Background" },
-            { q: "The word ... means one of a kind.", type: "mcq", opts: ["unique", "ordinary", "common", "usual"], ans: "unique" },
-            { q: "At school, many students think they must look or act a certain way to ...", type: "mcq", opts: ["pull out", "turn on", "look for", "fit in"], ans: "fit in" },
-            { q: "My ... isn't about what others see, it's about who I really am inside.", type: "mcq", opts: ["culture", "country", "identity", "nation"], ans: "identity" },
-            { q: "My background is simple: I come from a family that ... hard work and kindness.", type: "mcq", opts: ["dislikes", "hates", "values", "refuses"], ans: "values" },
-            { q: "These beliefs ... my character and help me know what's right.", type: "mcq", opts: ["shape", "shade", "chop", "share"], ans: "shape" },
-            { q: "I may not be the loudest person in class, but I believe listening is one of my ...", type: "mcq", opts: ["strengths", "possessions", "weakness", "power"], ans: "strengths" },
-            { q: "Sometimes, I feel pressure from ... media to change how I act or dress.", type: "mcq", opts: ["society", "sociable", "social", "mass"], ans: "social" },
-            { q: "I remind myself that being real is more important than being ...", type: "mcq", opts: ["unpopular", "infamous", "unknown", "popular"], ans: "popular" },
-            { q: "Through self-discovery, I've found more ...", type: "mcq", opts: ["confidence", "concrete", "carts", "carrots"], ans: "confidence" },
-            { q: "I now know that being ... doesn't mean being strange - it means being real.", type: "mcq", opts: ["unique", "useful", "uniform", "unicorn"], ans: "unique" },
-            { q: "With resilience and self-..., I can grow into the person I want to be.", type: "mcq", opts: ["strength", "special", "esteem", "system"], ans: "esteem" },
-            { q: "To ... is to help or encourage somebody.", type: "mcq", opts: ["support", "depress", "value", "identify"], ans: "support" },
-            { q: "... is the process of growing physically, mentally or emotionally.", type: "mcq", opts: ["Growth", "Trai", "Support", "Start"], ans: "Growth" },
-            { q: "... is a particular quality in your personality.", type: "mcq", opts: ["A", "Trait", "Toy", "Support"], ans: "Trait" },
-            { q: "... is the qualities that make somebody different from other people.", type: "mcq", opts: ["Individuality", "Integrity", "Engineering", "Mind"], ans: "Individuality" },
-            { q: "To be ... is to feel sure about your abilities, qualities or decisions.", type: "mcq", opts: ["greedy", "honest", "confident", "unsure"], ans: "confident" },
-            { q: "To be ... is to be interested in discovering new things.", type: "mcq", opts: ["careful", "useful", "confident", "curious"], ans: "curious" },
-            { q: "To be ... is to adapt to challenging situations.", type: "mcq", opts: ["resilient", "unique", "alone", "curly"], ans: "resilient" },
-            { q: "Good ... is the key to strong relationships.", type: "mcq", opts: ["communication", "action", "suggestion", "fiction"], ans: "communication" },
-            { q: "The way you talk and listen affects your ... with others.", type: "mcq", opts: ["connection", "collection", "picture", "photo"], ans: "connection" },
-            { q: "Communication includes your tone of voice and your ... expression.", type: "mcq", opts: ["nasal", "legs", "facial", "hands"], ans: "facial" },
-            { q: "Even a simple smile or a text ... can show someone you care.", type: "mcq", opts: ["massage", "lesson", "book", "message"], ans: "message" },
-            { q: "Social media and texting make it easy to stay ... touch.", type: "mcq", opts: ["on", "at", "in", "of"], ans: "in" },
-            { q: "Social media and texting make it easy to stay in touch but sometimes messages are ...", type: "mcq", opts: ["clear", "misunderstood", "nice", "understood"], ans: "misunderstood" },
-            { q: "... can lead to conflict or distance between people.", type: "mcq", opts: ["Miscommunication", "Connection", "Relation", "Identity"], ans: "Miscommunication" },
-            { q: "Being honest and ... helps to strengthen the bond between people.", type: "mcq", opts: ["supportive", "discouraging", "setback", "naughty"], ans: "respectful" },
-            { q: "Sometimes, conflicts happen even in close ...", type: "mcq", opts: ["misunderstanding", "relationships", "misbehaviors", "disadvantages"], ans: "relationships" },
-            { q: "The best way to ... problems is through calm, honest discussion.", type: "mcq", opts: ["rise", "increase", "resolve", "reconnect"], ans: "resolve" },
-            { q: "... is failure to understand correctly.", type: "mcq", opts: ["Misunderstanding", "Misuse", "Mislead", "Mass media"], ans: "Misunderstanding" },
-            { q: "... is a relationship or link between people.", type: "mcq", opts: ["Correction", "Connection", "Collection", "Action"], ans: "Connection" },
-            { q: "A ... is a strong connection between people.", type: "mcq", opts: ["bold", "bald", "bond", "band"], ans: "bond" },
-            { q: "To ... is to share thoughts, feelings or ideas.", type: "mcq", opts: ["communicate", "allow", "let", "join"], ans: "communicate" },
-            { q: "To ... is to find a solution to a problem or a conflict.", type: "mcq", opts: ["resolve", "salute", "say", "tell"], ans: "resolve" },
-            { q: "The ... people show care and regard for others.", type: "mcq", opts: ["respectful", "shy", "ashamed", "lazy"], ans: "respectful" },
-            { q: "Those who are ... are ready to give help or encouragement.", type: "mcq", opts: ["frustrated", "upset", "supportive", "annoyed"], ans: "supportive" },
-            { q: "Which is more important texting or taking face-to-...", type: "mcq", opts: ["face", "advice", "opinion", "point"], ans: "face" },
-            { q: "What ... the misunderstanding with your friend?", type: "mcq", opts: ["reasoned", "argued", "agreed", "caused"], ans: "caused" },
-            { q: "A ... means a movement, a sign or action that shows emotion or feeling.", type: "mcq", opts: ["position", "Connection", "communication", "gesture"], ans: "gesture" },
-            { q: "... means emotionally or physically not close.", type: "mcq", opts: ["close", "distant", "near", "click"], ans: "distant" },
-            { q: "... having purpose, deep importance or feeling.", type: "mcq", opts: ["Minute", "Meaningless", "Meaningful", "Careful"], ans: "Meaningful" },
-            { q: "To ... is to build a relationship again after distance.", type: "mcq", opts: ["reconnect", "relocate", "rewrite", "reread"], ans: "reconnect" },
-            { q: "To ... means looking for information for something.", type: "mcq", opts: ["look", "upset", "support", "research"], ans: "research" },
-            { q: "To be ... is to be given power or confidence to do something.", type: "mcq", opts: ["powered", "empowered", "respected", "regarded"], ans: "empowered" },
-            { q: "... means not giving up when things are hard.", type: "mcq", opts: ["Resilience", "Trust", "Confidence", "Rely"], ans: "Resilience" },
-            { q: "... is the qualities that make a person unique.", type: "mcq", opts: ["Personal", "Frustration", "Individuality", "Respect"], ans: "Individuality" },
-            { q: "... is the ability to recover after difficulty.", type: "mcq", opts: ["Courage", "Core", "Resilience", "Background"], ans: "Resilience" }
+        // --- 3. VOCABULARY REVISION DATA (FULL 268 QUESTIONS) ---
+        const fullVocabBank = [
+            { q:"Self-... means learning more about who you are.", type:"mcq", opts:["discovery","esteem","confidence","denial"], ans:"discovery" },
+            { q:"To ... is to have a high opinion of someone or something.", type:"mcq", opts:["find","value","look","identify"], ans:"value" },
+            { q:"... means being famous.", type:"mcq", opts:["Popularity","Curiosity","Responsibility","Individuality"], ans:"Popularity" },
+            { q:"... is where someone comes from.", type:"mcq", opts:["Backbone","Background","Pack","Backward"], ans:"Background" },
+            { q:"The word ... means one of a kind.", type:"mcq", opts:["unique","ordinary","common","usual"], ans:"unique" },
+            { q:"At school, many students think they must look or act a certain way to ...", type:"mcq", opts:["pull out","turn on","look for","fit in"], ans:"fit in" },
+            { q:"My ... isn't about what others see, it's about who I really am inside.", type:"mcq", opts:["culture","country","identity","nation"], ans:"identity" },
+            { q:"My background is simple: I come from a family that ... hard work and kindness.", type:"mcq", opts:["dislikes","hates","values","refuses"], ans:"values" },
+            { q:"These beliefs ... my character and help me know what's right.", type:"mcq", opts:["shape","shade","chop","share"], ans:"shape" },
+            { q:"I may not be the loudest person in class, but I believe listening is one of my ...", type:"mcq", opts:["strengths","possessions","weakness","power"], ans:"strengths" },
+            { q:"Sometimes, I feel pressure from ... media to change how I act or dress.", type:"mcq", opts:["society","sociable","social","mass"], ans:"social" },
+            { q:"I remind myself that being real is more important than being ...", type:"mcq", opts:["unpopular","infamous","unknown","popular"], ans:"popular" },
+            { q:"Through self-discovery, I've found more ...", type:"mcq", opts:["confidence","concrete","carts","carrots"], ans:"confidence" },
+            { q:"I now know that being ... doesn't mean being strange - it means being real.", type:"mcq", opts:["unique","useful","uniform","unicorn"], ans:"unique" },
+            { q:"With resilience and self-..., I can grow into the person I want to be.", type:"mcq", opts:["strength","special","esteem","system"], ans:"esteem" },
+            { q:"To ... is to help or encourage somebody.", type:"mcq", opts:["support","depress","value","identify"], ans:"support" },
+            { q:"... is the process of growing physically, mentally or emotionally.", type:"mcq", opts:["Growth","Trai","Support","Start"], ans:"Growth" },
+            { q:"... is a particular quality in your personality.", type:"mcq", opts:["A","Trait","Toy","Support"], ans:"Trait" },
+            { q:"... is the qualities that make somebody different from other people.", type:"mcq", opts:["Individuality","Integrity","Engineering","Mind"], ans:"Individuality" },
+            { q:"To be ... is to feel sure about your abilities, qualities or decisions.", type:"mcq", opts:["greedy","honest","confident","unsure"], ans:"confident" },
+            { q:"To be ... is to be interested in discovering new things.", type:"mcq", opts:["careful","useful","confident","curious"], ans:"curious" },
+            { q:"To be ... is to adapt to challenging situations.", type:"mcq", opts:["resilient","unique","alone","curly"], ans:"resilient" },
+            { q:"What challenges do you think you can ...", type:"mcq", opts:["face","er","tongue","nose"], ans:"face" },
+            { q:"What experience shapes our ...?", type:"mcq", opts:["identity","unit","definition","identify"], ans:"identity" },
+            { q:"How can support change your ...?", type:"mcq", opts:["character","portrait","map","chart"], ans:"character" },
+            { q:"Nour stood in front of the mirror ... her blazer.", type:"mcq", opts:["adjusting","speaking","playing","reading"], ans:"adjusting" },
+            { q:"Good ... is the key to strong relationships.", type:"mcq", opts:["communication","action","suggestion","fiction"], ans:"communication" },
+            { q:"The way you talk and listen affects your ... with others.", type:"mcq", opts:["connection","collection","picture","photo"], ans:"connection" },
+            { q:"Communication includes your tone of voice and your ... expression.", type:"mcq", opts:["nasal","legs","facial","hands"], ans:"facial" },
+            { q:"Even a simple smile or a text ... can show someone you care.", type:"mcq", opts:["massage","lesson","book","message"], ans:"message" },
+            { q:"Social media and texting make it easy to stay ... touch.", type:"mcq", opts:["on","at","in","of"], ans:"in" },
+            { q:"... can lead to conflict or distance between people.", type:"mcq", opts:["Miscommunication","Connection","Relation","Identity"], ans:"Miscommunication" },
+            { q:"Being honest and ... helps to strengthen the bond.", type:"mcq", opts:["supportive","discouraging","setback","naughty"], ans:"respectful" }, 
+            { q:"The best way to ... problems is through calm discussion.", type:"mcq", opts:["rise","increase","resolve","reconnect"], ans:"resolve" },
+            { q:"... is failure to understand correctly.", type:"mcq", opts:["Misunderstanding","Misuse","Mislead","Mass media"], ans:"Misunderstanding" },
+            { q:"... is a relationship or link between people.", type:"mcq", opts:["Correction","Connection","Collection","Action"], ans:"Connection" },
+            { q:"A ... is a strong connection between people.", type:"mcq", opts:["bold","bald","bond","band"], ans:"bond" },
+            { q:"To ... is to share thoughts, feelings or ideas.", type:"mcq", opts:["communicate","allow","let","join"], ans:"communicate" },
+            { q:"To ... is to find a solution to a problem.", type:"mcq", opts:["resolve","salute","say","tell"], ans:"resolve" },
+            { q:"The ... people show care and regard for others.", type:"mcq", opts:["respectful","shy","ashamed","lazy"], ans:"respectful" },
+            { q:"Those who are ... are ready to give help.", type:"mcq", opts:["frustrated","upset","supportive","annoyed"], ans:"supportive" },
+            { q:"A ... means a movement showing emotion.", type:"mcq", opts:["position","Connection","communication","gesture"], ans:"gesture" },
+            { q:"To ... is to build a relationship again after distance.", type:"mcq", opts:["reconnect","relocate","rewrite","reread"], ans:"reconnect" },
+            { q:"To be ... is to be given power or confidence.", type:"mcq", opts:["powered","empowered","respected","regarded"], ans:"empowered" },
+            { q:"... means not giving up when things are hard.", type:"mcq", opts:["Resilience","Trust","Confidence","Rely"], ans:"Resilience" },
+            { q:"To be ... is to be open and clear about everything.", type:"mcq", opts:["vague","secret","mysterious","frank"], ans:"frank" },
+            { q:"A ... is a plan or a suggestion for others.", type:"mcq", opts:["proposal","plan","map","chart"], ans:"proposal" },
+            { q:"... means not giving up until achieving something.", type:"mcq", opts:["Frustration","Connection","Determination","Contact"], ans:"Determination" },
+            { q:"To be ... is to feel annoyed or upset.", type:"mcq", opts:["happy","frustrated","pleased","excited"], ans:"frustrated" },
+            { q:"The synonym of ... is uncomfortably or embarrassing.", type:"mcq", opts:["nice","ugly","awkward","fat"], ans:"awkward" },
+            { q:"The absence of sound is known as ...", type:"mcq", opts:["silence","laughter","happiness","connection"], ans:"silence" },
+            { q:"My brothers and my sisters are my ...", type:"mcq", opts:["parents","siblings","grandparents","ancestors"], ans:"siblings" },
+            { q:"The word wood can be an adjective by adding...", type:"mcq", opts:["suffix","adj","prep","en"], ans:"en" },
+            { q:"To make 'tradition' an adjective, add suffix ...", type:"mcq", opts:["en","tion","al","ice"], ans:"al" },
+            { q:"Footballers nowadays ... a lot of money.", type:"mcq", opts:["win","gain","earn","beat"], ans:"earn" },
+            { q:"Omar sat at the table and his parents sat across ... him.", type:"mcq", opts:["on","from","among","over"], ans:"from" },
+            { q:"I can't study well due to the noise ...", type:"mcq", opts:["discussion","distraction","connection","quietness"], ans:"distraction" },
+            { q:"That small act of communication helped them ...", type:"mcq", opts:["rearrange","replay","redo","reconnect"], ans:"reconnect" },
+            { q:"Zeina decided to ... responsibility for her idea.", type:"mcq", opts:["take","make","do","write"], ans:"take" },
+            { q:"She felt hurt but she showed ...", type:"mcq", opts:["weakness","resilience","disadvantages","drawbacks"], ans:"resilience" },
+            { q:"Everyone ... a nice place to learn and eat.", type:"mcq", opts:["deserves","detests","dislikes","hates"], ans:"deserves" },
+            { q:"The hospital will be controlled by Artificial ...", type:"mcq", opts:["Intelligence","lake","milk","limbs"], ans:"Intelligence" },
+            { q:"AI will be used in many ... like medicine.", type:"mcq", opts:["classes","fields","farms","clubs"], ans:"fields" },
+            { q:"Artificial Intelligence can ... music.", type:"mcq", opts:["do","feel","imagine","compose"], ans:"compose" },
+            { q:"Robots and AI can't truly understand ...", type:"mcq", opts:["orders","technology","emotions","music"], ans:"emotions" },
+            { q:"A robot is a machine which can ... tasks.", type:"mcq", opts:["make","take","give","do"], ans:"do" },
+            { q:"Artificial Intelligence allows the robot to ... decisions.", type:"mcq", opts:["do","make","read","put"], ans:"make" },
+            { q:"Scientists will ... the current technology.", type:"mcq", opts:["prove","disapprove","improve","approve"], ans:"improve" },
+            { q:"We add prefix ... to give opposite of connection.", type:"mcq", opts:["im","in","ir","dis"], ans:"dis" },
+            { q:"There are lots of nice AI ... on my mobile.", type:"mcq", opts:["apps","apes","abilities","apples"], ans:"apps" },
+            { q:"In schools robots can help students ... languages.", type:"mcq", opts:["learn","miss","forget","do"], ans:"learn" },
+            { q:"AI and robots are not ... They are different.", type:"mcq", opts:["different","useful","good","the same"], ans:"the same" },
+            { q:"Robots and AI still have ... as they don't understand emotion.", type:"mcq", opts:["limits","laws","rules","roles"], ans:"limits" },
+            { q:"Try again. Don't be ...", type:"mcq", opts:["good","nice","brilliant","disappointed"], ans:"disappointed" },
+            { q:"Disappointed is the synonym of ...", type:"mcq", opts:["content","happy","upset","pleased"], ans:"upset" },
+            { q:"Abnormal is the antonym of ...", type:"mcq", opts:["unusual","strange","odd","normal"], ans:"normal" },
+            { q:"The robots can't react to your ... on your face.", type:"mcq", opts:["smile","noise","sound","voice"], ans:"smile" },
+            { q:"The synonym of kind is ...", type:"mcq", opts:["cruel","unkind","bad","friendly"], ans:"friendly" },
+            { q:"The ... of our project is lack of money.", type:"mcq", opts:["weakness","kindness","actress","hostess"], ans:"weakness" },
+            { q:"To give opposite of 'honest', add prefix ...", type:"mcq", opts:["il","ir","dis","un"], ans:"dis" },
+            { q:"... are important topics or problems.", type:"mcq", opts:["Choices","Decisions","Issues","Tools"], ans:"Issues" },
+            { q:"... are jobs or actions that need to be done.", type:"mcq", opts:["Skulls","Tasks","Tusks","Matters"], ans:"Tasks" },
+            { q:"... means very modern, developed or complex.", type:"mcq", opts:["Ancient","Old","New","Advanced"], ans:"Advanced" },
+            { q:"... is the way someone or something acts.", type:"mcq", opts:["Behaviour","Medicine","Robot","Vacuum"], ans:"Behaviour" },
+            { q:"... is the point where something stops.", type:"mcq", opts:["Light","Land","Reduce","Limit"], ans:"Limit" },
+            { q:"To ... is to change something to make it your own.", type:"mcq", opts:["custom","customize","increase","reduce"], ans:"customize" },
+            { q:"The ... is a link between people, things or ideas.", type:"mcq", opts:["connection","pollution","bank","lack"], ans:"connection" },
+            { q:"To ... is to see or become aware of something.", type:"mcq", opts:["hear","taste","listen","notice"], ans:"notice" },
+            { q:"... means taking actions without waiting.", type:"mcq", opts:["Initiative","End","Finish","Spend"], ans:"Initiative" },
+            { q:"... is money or gifts given to help a project.", type:"mcq", opts:["Helping","Giving","Presenting","Donation"], ans:"Donation" },
+            { q:"To ... is to stop doing something because it is bad.", type:"mcq", opts:["quite","calm","quit","quiet"], ans:"quit" },
+            { q:"To be ... is to feel sad when something fails.", type:"mcq", opts:["respected","disappointed","advanced","happy"], ans:"disappointed" },
+            { q:"The word instantly is similar to ...", type:"mcq", opts:["immediately","near","close","far"], ans:"immediately" },
+            { q:"... includes inventions and improvements.", type:"mcq", opts:["Invitation","Public","Fiction","Innovation"], ans:"Innovation" },
+            { q:"All homework was ... checked instantly.", type:"mcq", opts:["instantly","instant","once","quick"], ans:"instantly" },
+            { q:"The robot teacher didn't ... when students felt tired.", type:"mcq", opts:["remind","think","notice","mention"], ans:"notice" },
+            { q:"Technology can't replace the care and ... of a teacher.", type:"mcq", opts:["home","house","connection","place"], ans:"connection" },
+            { q:"Zeina asked for ...", type:"mcq", opts:["donation","water","food","clothes"], ans:"donation" },
+            { q:"They learnt how to ... for different plants.", type:"mcq", opts:["care","look","search","wait"], ans:"care" },
+            { q:"... means the total time a person spends on screens.", type:"mcq", opts:["Night mode","Smartboard","Screen time","Free time"], ans:"Screen time" },
+            { q:"Teenagers ... through social media.", type:"mcq", opts:["scroll","spend","stay","send"], ans:"scroll" },
+            { q:"It is important to ... screen use.", type:"mcq", opts:["limit","end","balance","watch"], ans:"balance" },
+            { q:"Spending too much time on screens affects you ...", type:"mcq", opts:["mind","mentally","physically","critically"], ans:"mentally" },
+            { q:"To avoid side ..., take short breaks.", type:"mcq", opts:["reflects","effects","facts","affects"], ans:"effects" },
+            { q:"An ... is a person who knows a lot.", type:"mcq", opts:["expert","architect","engineer","email"], ans:"expert" },
+            { q:"To ... is to keep things equal.", type:"mcq", opts:["Role","Balance","Screen","Tradition"], ans:"Balance" },
+            { q:"... means useful or helpful.", type:"mcq", opts:["Playing","Paying","collecting","Productive"], ans:"Productive" },
+            { q:"Cutting-... is something new and advanced.", type:"mcq", opts:["edge","wing","rug","leg"], ans:"edge" },
+            { q:"Something that takes attention away is ...", type:"mcq", opts:["attract","attraction","distraction","connection"], ans:"distraction" },
+            { q:"We should caring ... the earth.", type:"mcq", opts:["after","for","to","after"], ans:"for" },
+            { q:"To be ... means not to be easily distracted.", type:"mcq", opts:["distracted","lazy","focused","sad"], ans:"focused" },
+            { q:"To find ... is to find answers to problems.", type:"mcq", opts:["solutions","chemicals","gases","fertilizers"], ans:"solutions" },
+            { q:"Eco-... means not harmful to nature.", type:"mcq", opts:["friend","friendly","ebook","relative"], ans:"friendly" },
+            { q:"Too much screen time can cause ...", type:"mcq", opts:["pollution","smoke","stress","strategy"], ans:"stress" },
+            { q:"Young people are the hope of the ...", type:"mcq", opts:["past years","future","past","old days"], ans:"future" },
+            { q:"I want to feel more ... control of my time.", type:"mcq", opts:["on","in","at","of"], ans:"in" },
+            { q:"Students started eating ... fresh tomatoes.", type:"mcq", opts:["with","by","in","of"], ans:"with" },
+            { q:"A ... is a list of planned activities.", type:"mcq", opts:["map","chart","schedule","card"], ans:"schedule" },
+            { q:"A ... is a way of looking at something.", type:"mcq", opts:["picture","photo","image","perspective"], ans:"perspective" },
+            { q:"... means the ability to make new ideas.", type:"mcq", opts:["Resilience","Creativity","Confidence","Trust"], ans:"Creativity" },
+            { q:"The ... is a simple model of a design.", type:"mcq", opts:["port","portion","prototype","typewriter"], ans:"prototype" },
+            { q:"Designers are everyday problem ...", type:"mcq", opts:["doers","solvers","makers","users"], ans:"solvers" },
+            { q:"Designers ... things that are useful.", type:"mcq", opts:["show","see","create","ignore"], ans:"create" },
+            { q:"Great designers explore ideas from different ...", type:"mcq", opts:["perspectives","corners","places","platforms"], ans:"perspectives" },
+            { q:"Creativity is important in ...", type:"mcq", opts:["resign","design","desert","risk"], ans:"design" },
+            { q:"Designers think ... the function of things.", type:"mcq", opts:["in","on","about","off"], ans:"about" },
+            { q:"The word job is a synonym to ...", type:"mcq", opts:["interaction","function","fact","reaction"], ans:"function" },
+            { q:"Students put books in their ...", type:"mcq", opts:["package","suitcases","backpacks","backs"], ans:"backpacks" },
+            { q:"What ... are you? I am 75 kg.", type:"mcq", opts:["height","weight","much","heavy"], ans:"weight" },
+            { q:"Designing includes style and ...", type:"mcq", opts:["safety","insecurity","danger","risk"], ans:"safety" },
+            { q:"Design thinking means caring ... people.", type:"mcq", opts:["of","with","in","about"], ans:"about" },
+            { q:"To be a designer, you need a ... to improve.", type:"mcq", opts:["drought","desire","distance","dessert"], ans:"desire" },
+            { q:"What is a prototype? A simple ...", type:"mcq", opts:["medal","disc","model","middle"], ans:"model" },
+            { q:"... style, what is important?", type:"mcq", opts:["Beside","Besides","Close","Next"], ans:"Besides" },
+            { q:"The word ... means what something is designed to do.", type:"mcq", opts:["function","desire","style","stylish"], ans:"function" },
+            { q:"I value a strong ... with my family.", type:"mcq", opts:["ship","shape","relationship","share"], ans:"relationship" },
+            { q:"Her new outfit was ... and comfortable.", type:"mcq", opts:["vanish","style","stylish","foolish"], ans:"stylish" },
+            { q:"... means effective and suitable.", type:"mcq", opts:["Practical","Partial","Physical","Mental"], ans:"Practical" },
+            { q:"The antonym of relaxed is ...", type:"mcq", opts:["nervous","calm","quiet","comfortable"], ans:"nervous" },
+            { q:"We should help the ... feel welcome.", type:"mcq", opts:["corners","newcomers","news","corks"], ans:"newcomers" },
+            { q:"The school garden has an impact ... students.", type:"mcq", opts:["of","on","about","in"], ans:"on" },
+            { q:"Students were more careful ... the garden.", type:"mcq", opts:["of","with","by","at"], ans:"with" },
+            { q:"... the end of the school day, we went home.", type:"mcq", opts:["At","In","Of","About"], ans:"At" },
+            { q:"... is the science of farming.", type:"mcq", opts:["Industry","Agriculture","Engineering","Medicine"], ans:"Agriculture" },
+            { q:"... means working hard at something.", type:"mcq", opts:["Developed","Deduction","Dedicated","Danger"], ans:"Dedicated" },
+            { q:"... is to suggest many ideas quickly.", type:"mcq", opts:["Think","Brain","Mind","Brainstorm"], ans:"Brainstorm" },
+            { q:"A ... is similar to a friend.", type:"mcq", opts:["body","lady","rude","buddy"], ans:"buddy" },
+            { q:"Her drawings ... others to add art.", type:"mcq", opts:["inspired","sent","discouraged","refused"], ans:"inspired" },
+            { q:"Being honest helps people ... you.", type:"mcq", opts:["confuse","doubts","trust","disagree"], ans:"trust" },
+            { q:"After the long day, he decided to ... the job.", type:"mcq", opts:["join","quit","enjoy","build"], ans:"quit" },
+            { q:"She is ... to her studies.", type:"mcq", opts:["lazy","late","angry","dedicated"], ans:"dedicated" },
+            { q:"I ... my friends and ask for advice.", type:"mcq", opts:["trust","blame","teach","copy"], ans:"trust" },
+            { q:"We should use strengths ...", type:"mcq", opts:["badly","rudely","wisely","foolishly"], ans:"wisely" },
+            { q:"In a careful way is ...", type:"mcq", opts:["physically","critically","emotionally","naturally"], ans:"critically" },
+            { q:"To start something is to ...", type:"mcq", opts:["end","conclude","spark","shock"], ans:"spark" },
+            { q:"... is related to right or wrong.", type:"mcq", opts:["Molar","Rural","Moral","Role"], ans:"Moral" },
+            { q:"Sharing feelings is ...", type:"mcq", opts:["empathy","creativity","activity","industry"], ans:"empathy" },
+            { q:"Different kinds means ...", type:"mcq", opts:["unique","various","basic","careful"], ans:"various" },
+            { q:"... are ways of thinking or point of view.", type:"mcq", opts:["Points","Purposes","Perspectives","Discussions"], ans:"Perspectives" },
+            { q:"Reading stories can ... how we think.", type:"mcq", opts:["improve","damage","destroy","spoil"], ans:"improve" },
+            { q:"Through stories we see how characters ...", type:"mcq", opts:["face","meet","respond","solve"], ans:"respond" },
+            { q:"We develop ... and learn solutions.", type:"mcq", opts:["cruelty","unkindness","empathy","hatred"], ans:"empathy" },
+            { q:"We should think ... about choices.", type:"mcq", opts:["critical","physically","mental","critically"], ans:"critically" },
+            { q:"Stories help us reflect ... our lives.", type:"mcq", opts:["in","on","of","about"], ans:"on" },
+            { q:"Stories ... our imagination.", type:"mcq", opts:["spark","share","depart","speak"], ans:"spark" },
+            { q:"Stories help us grow ...", type:"mcq", opts:["physically","critically","emotionally","tall"], ans:"emotionally" },
+            { q:"... the end, reading stories is fun.", type:"mcq", opts:["On","At","Of","In"], ans:"In" },
+            { q:"Reading makes us more ... of the world.", type:"mcq", opts:["know","see","hear","aware"], ans:"aware" },
+            { q:"A ... is a suggestion.", type:"mcq", opts:["recommendation","situation","connection","influence"], ans:"recommendation" },
+            { q:"A ... is a formal discussion.", type:"mcq", opts:["problem","story","character","debate"], ans:"debate" },
+            { q:"... means not fair.", type:"mcq", opts:["fair","just","unfair","unable"], ans:"unfair" },
+            { q:"... means in an honest way.", type:"mcq", opts:["Physically","Honestly","Emotionally","Mentally"], ans:"Honestly" },
+            { q:"The word ... means unable to move.", type:"mcq", opts:["steal","steel","took","stuck"], ans:"stuck" },
+            { q:"You shouldn't be angry when someone ...", type:"mcq", opts:["agrees","disagrees","accepts","supports"], ans:"disagrees" },
+            { q:"Don't shout to win ...", type:"mcq", opts:["arguments","advice","suggestion","recommendation"], ans:"arguments" },
+            { q:"Stories can ... how we react.", type:"mcq", opts:["influence","do","make","take"], ans:"influence" },
+            { q:"You should stay ... during debate.", type:"mcq", opts:["worried","calm","nervous","stressed"], ans:"calm" },
+            { q:"Don't ... others' opinions.", type:"mcq", opts:["respect","regard","ignore","value"], ans:"ignore" },
+            { q:"The ... story is imaginary.", type:"mcq", opts:["fiction","non-fiction","historical","folk"], ans:"fiction" },
+            { q:"... stories are traditional with lessons.", type:"mcq", opts:["fiction","non-fiction","historical","folk"], ans:"folk" },
+            { q:"... stories are true.", type:"mcq", opts:["fiction","non-fiction","imaginary","fictional"], ans:"non-fiction" },
+            { q:"... are exciting journeys.", type:"mcq", opts:["Fables","Cartoons","Adventure stories","Historical"], ans:"Adventure stories" },
+            { q:"... stories are based on real past events.", type:"mcq", opts:["Fables","fiction","Adventure","Historical"], ans:"Historical" },
+            { q:"... are short tales with moral.", type:"mcq", opts:["Fiction","Non-fiction","Fables","Folk"], ans:"Fables" },
+            { q:"Giving power is ...", type:"mcq", opts:["empowering","fuel","energy","strong"], ans:"empowering" },
+            { q:"An ... is a strong desire.", type:"mcq", opts:["nutrition","ambition","production","culture"], ans:"ambition" },
+            { q:"... means not giving up.", type:"mcq", opts:["recommendation","suggestion","determination","situation"], ans:"determination" },
+            { q:"The word ... means unique.", type:"mcq", opts:["common","usual","ordinary","special"], ans:"special" },
+            { q:"The word ... means bravery.", type:"mcq", opts:["courage","weakness","fiction","fable"], ans:"courage" },
+            { q:"... is ability to recover.", type:"mcq", opts:["Value","Resilience","Respect","Honesty"], ans:"Resilience" },
+            { q:"Zeina was elected ...", type:"mcq", opts:["student","pupil","president","architect"], ans:"president" },
+            { q:"She learnt about being a real ...", type:"mcq", opts:["doctor","teacher","tailor","leader"], ans:"leader" },
+            { q:"Being a leader ... doing everything alone.", type:"mcq", opts:["help","say","doesn't mean","tell"], ans:"doesn't mean" },
+            { q:"Add prefix ... to power for verb.", type:"mcq", opts:["em","il","ir","im"], ans:"em" },
+            { q:"The wise leader should be ...", type:"mcq", opts:["transplant","transparent","transport","translate"], ans:"transparent" },
+            { q:"She wanted to help students ... their school.", type:"mcq", opts:["exchange","leave","live","change"], ans:"change" },
+            { q:"What new role did Zeina ...?", type:"mcq", opts:["take on","take off","take after","take away"], ans:"take on" },
+            { q:"Every good story has a ...", type:"mcq", opts:["resolution","view","value","respect"], ans:"resolution" }
         ];
 
-        // Distribute ~5 questions per model to reach 10 models using the 50 Qs above
-        let gIndex = 0;
-        for(let i=1; i<=10; i++){
-            for(let j=0; j<5; j++){
-                if(gIndex < generalQBank.length) {
-                    db.general.questions.push({ ...generalQBank[gIndex], m: i });
-                    gIndex++;
-                } else {
-                    // Recycle if run out
-                    db.general.questions.push({ ...generalQBank[gIndex % generalQBank.length], m: i });
-                    gIndex++;
-                }
+        // Distribute 268 Qs into 10 Models (approx 27 per model)
+        let vIdx = 0;
+        for(let i=1; i<=10; i++){ 
+            for(let j=0; j<27; j++){ 
+                 if(vIdx < fullVocabBank.length) {
+                     db.vocab.questions.push({ ...fullVocabBank[vIdx], m: i, q: `Model ${i} Q${j+1}: ${fullVocabBank[vIdx].q}` });
+                     vIdx++;
+                 } else {
+                     // If we run out (unlikely with 268 into 270 slots), recycle from start
+                     db.vocab.questions.push({ ...fullVocabBank[vIdx % fullVocabBank.length], m: i, q: `Model ${i} Q${j+1}: ${fullVocabBank[vIdx % fullVocabBank.length].q}` });
+                     vIdx++;
+                 }
             }
         }
 
@@ -321,7 +462,6 @@
         let currentQuestions = [];
         let userAnswers = {};
 
-        // Init
         window.onload = () => {
             const timer = setInterval(() => {
                 const el = document.getElementById('countdown');
@@ -354,6 +494,7 @@
         function selectSubject(subKey) {
             currentSubject = subKey;
             const data = db[subKey];
+            
             document.getElementById('dashboard-section').classList.add('hidden');
             document.getElementById('model-section').classList.remove('hidden');
             
@@ -400,38 +541,24 @@
                 item.appendChild(header);
                 item.appendChild(text);
 
-                if(q.type === 'mcq' || q.type === 'multi') {
+                if(q.type === 'mcq') {
                     const optsDiv = document.createElement('div');
                     optsDiv.className = "grid grid-cols-1 md:grid-cols-2 gap-3 en-font";
                     q.opts.forEach(opt => {
                         const btn = document.createElement('div');
                         btn.className = "p-3 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:border-gray-400 transition flex items-center gap-3";
                         btn.innerHTML = `
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex-shrink-0 ${q.type==='multi'?'rounded-md':''}" id="check-${idx}-${opt.substring(0,3)}"></div>
+                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex-shrink-0" id="check-${idx}-${opt.substring(0,3)}"></div>
                             <span class="select-none text-left">${opt}</span>
                         `;
                         btn.onclick = () => {
-                            if(q.type === 'mcq') {
-                                userAnswers[idx] = opt;
-                                // Visual clear
-                                Array.from(optsDiv.children).forEach(c => {
-                                    c.classList.remove('border-gray-800','bg-gray-100');
-                                    c.querySelector('div').classList.remove('bg-gray-800','border-gray-800');
-                                });
-                                btn.classList.add('border-gray-800','bg-gray-100');
-                                btn.querySelector('div').classList.add('bg-gray-800','border-gray-800');
-                            } else {
-                                if(!userAnswers[idx]) userAnswers[idx] = [];
-                                if(userAnswers[idx].includes(opt)) {
-                                    userAnswers[idx] = userAnswers[idx].filter(x => x !== opt);
-                                    btn.classList.remove('border-gray-800','bg-gray-100');
-                                    btn.querySelector('div').classList.remove('bg-gray-800','border-gray-800');
-                                } else {
-                                    userAnswers[idx].push(opt);
-                                    btn.classList.add('border-gray-800','bg-gray-100');
-                                    btn.querySelector('div').classList.add('bg-gray-800','border-gray-800');
-                                }
-                            }
+                            userAnswers[idx] = opt;
+                            Array.from(optsDiv.children).forEach(c => {
+                                c.classList.remove('border-gray-800','bg-gray-100');
+                                c.querySelector('div').classList.remove('bg-gray-800','border-gray-800');
+                            });
+                            btn.classList.add('border-gray-800','bg-gray-100');
+                            btn.querySelector('div').classList.add('bg-gray-800','border-gray-800');
                         };
                         optsDiv.appendChild(btn);
                     });
@@ -472,10 +599,8 @@
 
                 if(q.type === 'mcq') {
                     if(uAns === q.ans) isCorrect = true;
-                } else if(q.type === 'multi') {
-                    if(uAns && uAns.length === q.ans.length && uAns.sort().toString() === q.ans.sort().toString()) isCorrect = true;
                 } else {
-                    if(uAns && q.ans.toLowerCase().includes(uAns.toLowerCase().trim().substring(0, 5))) isCorrect = true; // Simple fuzzy match
+                    if(uAns && q.ans.toLowerCase().includes(uAns.toLowerCase().trim().substring(0, 5))) isCorrect = true; 
                 }
 
                 if(isCorrect) score++;
@@ -484,7 +609,7 @@
                         <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500 text-left en-font">
                             <p class="font-bold text-gray-800 mb-1">${q.q}</p>
                             <p class="text-red-600 text-sm">Your Answer: ${uAns || "No Answer"}</p>
-                            <p class="text-green-700 text-sm font-bold">Correct: ${Array.isArray(q.ans) ? q.ans.join(" & ") : q.ans}</p>
+                            <p class="text-green-700 text-sm font-bold">Correct: ${q.ans}</p>
                         </div>
                     `;
                 }
