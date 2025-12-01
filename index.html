@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>منصة مستر علاء النجار التفاعلية للمرحلة الإعدادية</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>منصة مستر علاء النجار التفاعلية للمرحلة الإعدادية</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&amp;family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
         body { font-family: 'Cairo', sans-serif; background: #f3f4f6; color:#111827 }
         .en-font { font-family: 'Poppins', sans-serif; direction:ltr }
         .card-hover:hover { transform: translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.12) }
@@ -30,238 +30,241 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
 <nav class="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="bg-yellow-400 w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-xl">A</div>
-            <div>
-                <div class="text-lg font-bold">منصة مستر علاء النجار التفاعلية للمرحلة الإعدادية</div>
-                <div class="text-xs text-gray-300">Mr. Alaa El-Naggar Platform</div>
-            </div>
-        </div>
-        <div id="nav-actions" class="flex items-center gap-3">
-            <button id="home-from-any" onclick="goToHome()" class="hidden bg-gray-800 px-3 py-2 rounded-lg text-sm hover:bg-gray-700 transition">الرئيسية 🏠</button>
-        </div>
-    </div>
+<div class="container mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-yellow-400 w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-xl">A</div>
+<div>
+<div class="text-lg font-bold">منصة مستر علاء النجار التفاعلية للمرحلة الإعدادية</div>
+<div class="text-xs text-gray-300">Mr. Alaa El-Naggar Platform</div>
+</div>
+</div>
+<div class="flex items-center gap-3" id="nav-actions">
+<button class="hidden bg-gray-800 px-3 py-2 rounded-lg text-sm hover:bg-gray-700 transition" id="home-from-any" onclick="goToHome()">الرئيسية 🏠</button>
+</div>
+</div>
 </nav>
-
-<button id="mobile-back-btn"
-    onclick="backToModels()"
-    class="hidden fixed top-24 right-4 bg-white shadow-xl rounded-full w-12 h-12 flex items-center justify-center text-2xl border border-gray-200 hover:bg-gray-100 active:scale-95 transition text-gray-800 z-40">
+<button class="hidden fixed top-24 right-4 bg-white shadow-xl rounded-full w-12 h-12 flex items-center justify-center text-2xl border border-gray-200 hover:bg-gray-100 active:scale-95 transition text-gray-800 z-40" id="mobile-back-btn" onclick="backToModels()">
     ⟵
 </button>
-
 <main class="container mx-auto px-4 py-8 flex-grow relative">
-
-    <div id="intro-overlay" class="fixed inset-0 z-50 bg-black/80 text-white flex flex-col items-center justify-center p-6 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl p-8 max-w-xl w-full text-center text-gray-800 shadow-2xl border-4 border-yellow-400 modal-pop">
-            <h1 class="text-3xl font-extrabold mb-2">منصة مستر علاء النجار</h1>
-            <p class="text-lg font-semibold text-gray-500 mb-6 en-font">Interactive Learning Platform</p>
-            <p class="text-sm text-gray-600 mb-6 leading-relaxed">أهلاً بك في المنصة التفاعلية الأقوى لتعلم الإنجليزية.<br>Grammar • Vocabulary • Story • Skills</p>
-            <div class="mb-6">
-                <input id="student-name-intro" type="text" placeholder="اكتب اسمك ثلاثي هنا ..." class="w-full p-4 border-2 border-gray-200 rounded-xl text-right focus:border-yellow-400 focus:outline-none text-lg" />
-            </div>
-            <div class="flex gap-3 justify-center">
-                <button class="px-8 py-3 rounded-xl btn-main font-bold text-lg shadow-lg transform hover:scale-105 transition" onclick="startFromIntro()">ابدأ الآن 🚀</button>
-            </div>
-        </div>
-    </div>
-
-    <section id="home-section" class="animate-fade-in">
-        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 mb-8 border-t-8 border-yellow-400">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold mb-2 text-gray-800">اختر الصف الدراسي</h2>
-                <p class="text-gray-500">Select your grade to start learning</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div onclick="selectGrade(1)" class="cursor-pointer bg-blue-50 hover:bg-blue-100 p-8 rounded-2xl shadow-sm border-2 border-blue-100 hover:border-blue-300 transition group relative overflow-hidden">
-                    <div class="flex flex-col items-center text-center h-full justify-center gap-4">
-                        <div class="text-5xl group-hover:scale-110 transition duration-300">1️⃣</div>
-                        <div>
-                            <h3 class="text-xl font-extrabold text-blue-900">الصف الأول الإعدادي</h3>
-                            <p class="text-lg font-bold text-blue-600 en-font mt-1">Prep 1</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectGrade(2)" class="cursor-pointer bg-green-50 hover:bg-green-100 p-8 rounded-2xl shadow-sm border-2 border-green-100 hover:border-green-300 transition group">
-                    <div class="flex flex-col items-center text-center h-full justify-center gap-4">
-                        <div class="text-5xl group-hover:scale-110 transition duration-300">2️⃣</div>
-                        <div>
-                            <h3 class="text-xl font-extrabold text-green-900">الصف الثاني الإعدادي</h3>
-                            <p class="text-lg font-bold text-green-600 en-font mt-1">Prep 2</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectGrade(3)" class="cursor-pointer bg-yellow-50 hover:bg-yellow-100 p-8 rounded-2xl shadow-sm border-2 border-yellow-100 hover:border-yellow-400 transition group ring-2 ring-yellow-400 ring-offset-2">
-                    <div class="flex flex-col items-center text-center h-full justify-center gap-4">
-                        <div class="text-5xl group-hover:scale-110 transition duration-300">3️⃣</div>
-                        <div>
-                            <h3 class="text-xl font-extrabold text-yellow-900">الصف الثالث الإعدادي</h3>
-                            <p class="text-lg font-bold text-yellow-600 en-font mt-1">Prep 3</p>
-                            <p class="text-xs text-gray-500 mt-2">الشهادة الإعدادية</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section-select" class="hidden animate-fade-in max-w-5xl mx-auto">
-        <div class="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-gray-200 mb-6">
-            <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <div>
-                    <h2 id="grade-title" class="text-2xl font-bold text-gray-800"></h2>
-                    <p id="grade-sub" class="text-gray-500">اختر القسم الذي تريد التدريب عليه:</p>
-                </div>
-                <div>
-                    <button onclick="goToHome()" class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-bold transition">تغيير الصف</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div onclick="selectSection('grammar_rev')" class="cursor-pointer bg-gradient-to-br from-indigo-900 to-indigo-700 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transform transition col-span-1 md:col-span-3 text-white relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition duration-500"></div>
-                    <div class="flex items-center gap-5 relative z-10">
-                        <div class="text-5xl bg-white/20 p-4 rounded-full backdrop-blur-sm">🎓</div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white mb-1">Grammar Revision & Explanation</h3>
-                            <p class="text-indigo-200 text-sm font-medium">شرح القواعد بالرسوم المتحركة + تدريبات شاملة (Units 1-6)</p>
-                            <span class="inline-block mt-3 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full">New • جديد</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectSection('grammar')" class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-indigo-600 card-hover transition">
-                    <div class="flex items-center gap-4">
-                        <div class="text-4xl bg-indigo-50 p-3 rounded-full">✍️</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800">Grammar</h3>
-                            <p class="text-sm text-gray-500 mt-1">القواعد والـ Rewrite</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectSection('vocabulary')" class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-blue-600 card-hover transition">
-                    <div class="flex items-center gap-4">
-                        <div class="text-4xl bg-blue-50 p-3 rounded-full">📚</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800">Vocabulary</h3>
-                            <p class="text-sm text-gray-500 mt-1">بنك الكلمات والتعريفات</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectSection('story')" class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-green-600 card-hover transition">
-                    <div class="flex items-center gap-4">
-                        <div class="text-4xl bg-green-50 p-3 rounded-full">📖</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800">Story</h3>
-                            <p class="text-sm text-gray-500 mt-1">أحداث القصة</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectSection('skills')" class="cursor-pointer bg-gradient-to-r from-pink-50 to-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-pink-500 card-hover col-span-1 md:col-span-3 transition group">
-                    <div class="flex items-center gap-5">
-                        <div class="text-5xl group-hover:scale-110 transition">💡</div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-pink-900">Writing Skills (Paragraphs)</h3>
-                            <p class="text-sm text-pink-600 mt-1 font-semibold">محتوى تفاعلي: ترتيب الجمل + توقع الأحداث (مترجم)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="selectSection('models')" class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-yellow-500 card-hover col-span-1 md:col-span-3 transition">
-                    <div class="flex items-center gap-4">
-                        <div class="text-4xl bg-yellow-50 p-3 rounded-full">📝</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800">Model Exams</h3>
-                            <p class="text-sm text-gray-500 mt-1">نماذج امتحانات شاملة للتدريب</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="grammar-hub" class="hidden animate-fade-in max-w-6xl mx-auto">
-        <div class="mb-6 flex justify-between items-center">
-            <button onclick="openSectionSelect()" class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2">
-                <span class="text-xl">🔙</span> العودة
+<div class="fixed inset-0 z-50 bg-black/80 text-white flex flex-col items-center justify-center p-6 backdrop-blur-sm" id="intro-overlay">
+<div class="bg-white rounded-2xl p-8 max-w-xl w-full text-center text-gray-800 shadow-2xl border-4 border-yellow-400 modal-pop">
+<h1 class="text-3xl font-extrabold mb-2">منصة مستر علاء النجار</h1>
+<p class="text-lg font-semibold text-gray-500 mb-6 en-font">Interactive Learning Platform</p>
+<p class="text-sm text-gray-600 mb-6 leading-relaxed">أهلاً بك في المنصة التفاعلية الأقوى لتعلم الإنجليزية.<br/>Grammar • Vocabulary • Story • Skills</p>
+<div class="mb-6">
+<input class="w-full p-4 border-2 border-gray-200 rounded-xl text-right focus:border-yellow-400 focus:outline-none text-lg" id="student-name-intro" placeholder="اكتب اسمك ثلاثي هنا ..." type="text"/>
+</div>
+<div class="flex gap-3 justify-center">
+<button class="px-8 py-3 rounded-xl btn-main font-bold text-lg shadow-lg transform hover:scale-105 transition" onclick="startFromIntro()">ابدأ الآن 🚀</button>
+</div>
+</div>
+</div>
+<section class="animate-fade-in" id="home-section">
+<div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 mb-8 border-t-8 border-yellow-400">
+<div class="text-center mb-8">
+<h2 class="text-3xl font-bold mb-2 text-gray-800">اختر الصف الدراسي</h2>
+<p class="text-gray-500">Select your grade to start learning</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="cursor-pointer bg-blue-50 hover:bg-blue-100 p-8 rounded-2xl shadow-sm border-2 border-blue-100 hover:border-blue-300 transition group relative overflow-hidden" onclick="selectGrade(1)">
+<div class="flex flex-col items-center text-center h-full justify-center gap-4">
+<div class="text-5xl group-hover:scale-110 transition duration-300">1️⃣</div>
+<div>
+<h3 class="text-xl font-extrabold text-blue-900">الصف الأول الإعدادي</h3>
+<p class="text-lg font-bold text-blue-600 en-font mt-1">Prep 1</p>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-green-50 hover:bg-green-100 p-8 rounded-2xl shadow-sm border-2 border-green-100 hover:border-green-300 transition group" onclick="selectGrade(2)">
+<div class="flex flex-col items-center text-center h-full justify-center gap-4">
+<div class="text-5xl group-hover:scale-110 transition duration-300">2️⃣</div>
+<div>
+<h3 class="text-xl font-extrabold text-green-900">الصف الثاني الإعدادي</h3>
+<p class="text-lg font-bold text-green-600 en-font mt-1">Prep 2</p>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-yellow-50 hover:bg-yellow-100 p-8 rounded-2xl shadow-sm border-2 border-yellow-100 hover:border-yellow-400 transition group ring-2 ring-yellow-400 ring-offset-2" onclick="selectGrade(3)">
+<div class="flex flex-col items-center text-center h-full justify-center gap-4">
+<div class="text-5xl group-hover:scale-110 transition duration-300">3️⃣</div>
+<div>
+<h3 class="text-xl font-extrabold text-yellow-900">الصف الثالث الإعدادي</h3>
+<p class="text-lg font-bold text-yellow-600 en-font mt-1">Prep 3</p>
+<p class="text-xs text-gray-500 mt-2">الشهادة الإعدادية</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="hidden animate-fade-in max-w-5xl mx-auto" id="section-select">
+<div class="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-gray-200 mb-6">
+<div class="flex justify-between items-center mb-6 border-b pb-4">
+<div>
+<h2 class="text-2xl font-bold text-gray-800" id="grade-title"></h2>
+<p class="text-gray-500" id="grade-sub">اختر القسم الذي تريد التدريب عليه:</p>
+</div>
+<div>
+<button class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-bold transition" onclick="goToHome()">تغيير الصف</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="cursor-pointer bg-gradient-to-br from-indigo-900 to-indigo-700 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transform transition col-span-1 md:col-span-3 text-white relative overflow-hidden group" onclick="selectSection('grammar_rev')">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition duration-500"></div>
+<div class="flex items-center gap-5 relative z-10">
+<div class="text-5xl bg-white/20 p-4 rounded-full backdrop-blur-sm">🎓</div>
+<div>
+<h3 class="text-2xl font-bold text-white mb-1">Grammar Revision &amp; Explanation</h3>
+<p class="text-indigo-200 text-sm font-medium">شرح القواعد بالرسوم المتحركة + تدريبات شاملة (Units 1-6)</p>
+<span class="inline-block mt-3 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full">New • جديد</span>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-indigo-600 card-hover transition" onclick="selectSection('grammar')">
+<div class="flex items-center gap-4">
+<div class="text-4xl bg-indigo-50 p-3 rounded-full">✍️</div>
+<div>
+<h3 class="text-xl font-bold text-gray-800">Grammar</h3>
+<p class="text-sm text-gray-500 mt-1">القواعد والـ Rewrite</p>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-blue-600 card-hover transition" onclick="selectSection('vocabulary')">
+<div class="flex items-center gap-4">
+<div class="text-4xl bg-blue-50 p-3 rounded-full">📚</div>
+<div>
+<h3 class="text-xl font-bold text-gray-800">Vocabulary</h3>
+<p class="text-sm text-gray-500 mt-1">بنك الكلمات والتعريفات</p>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-green-600 card-hover transition" onclick="selectSection('story')">
+<div class="flex items-center gap-4">
+<div class="text-4xl bg-green-50 p-3 rounded-full">📖</div>
+<div>
+<h3 class="text-xl font-bold text-gray-800">Story</h3>
+<p class="text-sm text-gray-500 mt-1">أحداث القصة (مشاهدة + حل)</p>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-gradient-to-r from-pink-50 to-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-pink-500 card-hover col-span-1 md:col-span-3 transition group" onclick="selectSection('skills')">
+<div class="flex items-center gap-5">
+<div class="text-5xl group-hover:scale-110 transition">💡</div>
+<div>
+<h3 class="text-2xl font-bold text-pink-900">Writing Skills (Paragraphs)</h3>
+<p class="text-sm text-pink-600 mt-1 font-semibold">محتوى تفاعلي: ترتيب الجمل + توقع الأحداث (مترجم)</p>
+</div>
+</div>
+</div>
+<div class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-yellow-500 card-hover col-span-1 md:col-span-3 transition" onclick="selectSection('models')">
+<div class="flex items-center gap-4">
+<div class="text-4xl bg-yellow-50 p-3 rounded-full">📝</div>
+<div>
+<h3 class="text-xl font-bold text-gray-800">Model Exams</h3>
+<p class="text-sm text-gray-500 mt-1">نماذج امتحانات شاملة للتدريب</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="hidden animate-fade-in max-w-6xl mx-auto" id="grammar-hub">
+<div class="mb-6 flex justify-between items-center">
+<button class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2" onclick="openSectionSelect()">
+<span class="text-xl">🔙</span> العودة
             </button>
-            <h2 class="text-2xl font-bold text-indigo-900">قائمة الدروس (Grammar Units)</h2>
-        </div>
-        <div id="grammar-units-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </section>
-
-    <section id="lesson-viewer" class="hidden animate-fade-in max-w-5xl mx-auto h-[80vh] flex flex-col">
-        <div class="flex justify-between items-center mb-4">
-            <button onclick="closeLesson()" class="text-gray-500 hover:text-red-500 font-bold">✕ إغلاق الدرس</button>
-            <h2 id="lesson-title" class="text-xl font-bold text-indigo-900 en-font"></h2>
-        </div>
-        
-        <div class="bg-white rounded-3xl shadow-2xl flex-grow overflow-hidden relative border-4 border-indigo-100 flex flex-col">
-            <div id="slide-content" class="p-8 md:p-12 flex-grow overflow-y-auto">
-                </div>
-            
-            <div class="bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
-                <button id="prev-slide" onclick="changeSlide(-1)" class="px-6 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 font-bold hover:bg-gray-100 disabled:opacity-50">السابق</button>
-                <div id="slide-indicator" class="font-bold text-indigo-600 dir-ltr">1 / 5</div>
-                <button id="next-slide" onclick="changeSlide(1)" class="px-6 py-3 rounded-xl bg-indigo-900 text-white font-bold hover:bg-black shadow-lg">التالي</button>
-                <button id="start-practice-btn" onclick="startGrammarPractice()" class="hidden px-6 py-3 rounded-xl bg-green-600 text-white font-bold hover:bg-green-700 shadow-lg animate-bounce">ابدأ التدريبات ✍️</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="model-section" class="hidden animate-fade-in max-w-6xl mx-auto">
-        <div class="mb-6">
-            <button onclick="openSectionSelect()" class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2">
-                <span class="text-xl">🔙</span> العودة للأقسام
+<h2 class="text-2xl font-bold text-indigo-900">قائمة الدروس (Grammar Units)</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="grammar-units-grid"></div>
+</section>
+<section class="hidden animate-fade-in max-w-5xl mx-auto h-[80vh] flex flex-col" id="lesson-viewer">
+<div class="flex justify-between items-center mb-4">
+<button class="text-gray-500 hover:text-red-500 font-bold" onclick="closeLesson()">✕ إغلاق الدرس</button>
+<h2 class="text-xl font-bold text-indigo-900 en-font" id="lesson-title"></h2>
+</div>
+<div class="bg-white rounded-3xl shadow-2xl flex-grow overflow-hidden relative border-4 border-indigo-100 flex flex-col">
+<div class="p-8 md:p-12 flex-grow overflow-y-auto" id="slide-content">
+</div>
+<div class="bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
+<button class="px-6 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 font-bold hover:bg-gray-100 disabled:opacity-50" id="prev-slide" onclick="changeSlide(-1)">السابق</button>
+<div class="font-bold text-indigo-600 dir-ltr" id="slide-indicator">1 / 5</div>
+<button class="px-6 py-3 rounded-xl bg-indigo-900 text-white font-bold hover:bg-black shadow-lg" id="next-slide" onclick="changeSlide(1)">التالي</button>
+<button class="hidden px-6 py-3 rounded-xl bg-green-600 text-white font-bold hover:bg-green-700 shadow-lg animate-bounce" id="start-practice-btn" onclick="startGrammarPractice()">ابدأ التدريبات ✍️</button>
+</div>
+</div>
+</section>
+<section class="hidden animate-fade-in max-w-6xl mx-auto" id="model-section">
+<div class="mb-6">
+<button class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2" onclick="openSectionSelect()">
+<span class="text-xl">🔙</span> العودة للأقسام
             </button>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-xl p-8 border-t-8" id="subject-box">
-            <h2 id="subject-title" class="text-2xl font-bold text-gray-800 mb-2"></h2>
-            <p id="subject-sub" class="text-gray-500 mb-6 font-semibold"></p>
-
-            <div id="model-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 en-font">
-                </div>
-        </div>
-    </section>
-
-    <section id="quiz-section" class="hidden animate-fade-in max-w-4xl mx-auto">
-        <div class="flex justify-between items-center mb-6">
-            <button id="text-back-btn" onclick="backToModels()" class="hidden text-gray-600 hover:text-gray-800 flex items-center gap-2 font-bold">→ العودة للقائمة</button>
-            <div></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-2xl p-8 border-t-8" id="quiz-container-box">
-            <h2 id="quiz-title" class="text-2xl font-bold text-gray-800 mb-6 text-center en-font leading-relaxed"></h2>
-            
-            <div id="questions-list" class="space-y-6"></div>
-
-            <button id="main-submit-btn" onclick="finishQuiz()" class="w-full mt-10 bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl shadow-lg hidden text-lg">
+</div>
+<div class="bg-white rounded-3xl shadow-xl p-8 border-t-8" id="subject-box">
+<h2 class="text-2xl font-bold text-gray-800 mb-2" id="subject-title"></h2>
+<p class="text-gray-500 mb-6 font-semibold" id="subject-sub"></p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 en-font" id="model-grid">
+</div>
+</div>
+</section>
+<section class="hidden animate-fade-in max-w-4xl mx-auto" id="quiz-section">
+<div class="flex justify-between items-center mb-6">
+<button class="hidden text-gray-600 hover:text-gray-800 flex items-center gap-2 font-bold" id="text-back-btn" onclick="backToModels()">→ العودة للقائمة</button>
+<div></div>
+</div>
+<div class="bg-white rounded-3xl shadow-2xl p-8 border-t-8" id="quiz-container-box">
+<h2 class="text-2xl font-bold text-gray-800 mb-6 text-center en-font leading-relaxed" id="quiz-title"></h2>
+<div class="space-y-6" id="questions-list"></div>
+<button class="w-full mt-10 bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl shadow-lg hidden text-lg" id="main-submit-btn" onclick="finishQuiz()">
                 Submit Answers إنهاء الامتحان
             </button>
-        </div>
-    </section>
-
-    <section id="universal-modal" class="hidden fixed inset-0 z-[100] bg-gray-900/90 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
-        <div id="modal-content" class="modal-pop bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center relative overflow-hidden">
-            </div>
-    </section>
-
+</div>
+</section>
+<section class="hidden fixed inset-0 z-[100] bg-gray-900/90 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity" id="universal-modal">
+<div class="modal-pop bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center relative overflow-hidden" id="modal-content">
+</div>
+</section>
+<section class="hidden animate-fade-in max-w-4xl mx-auto" id="watch-story-prep1">
+<div class="mb-6 flex justify-between items-center">
+<button class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2" onclick="closeStoryWatch()">🔙 العودة لقسم القصة</button>
+<h2 class="text-2xl font-bold text-green-800">مشاهدة القصة — الصف الأول الإعدادي</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="cursor-pointer bg-gradient-to-r from-blue-100 to-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-blue-500 transition" onclick="window.open('https://www.youtube.com/watch?v=0k5xCOhoODc&amp;list=PLqtLu2sdLGcVxqEjFCzpk2Ub8v0cz_r1a&amp;index=10', '_blank')">
+<h3 class="text-xl font-bold text-gray-800">قصة 1 — Prep 1</h3>
+<p class="text-sm text-gray-500 mt-2">اضغط لفتح الفيديو على اليوتيوب.</p>
+</div>
+</div>
+</section>
+<section class="hidden animate-fade-in max-w-4xl mx-auto" id="watch-story-prep2">
+<div class="mb-6 flex justify-between items-center">
+<button class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2" onclick="closeStoryWatch()">🔙 العودة لقسم القصة</button>
+<h2 class="text-2xl font-bold text-green-800">مشاهدة القصة — الصف الثاني الإعدادي</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="cursor-pointer bg-gradient-to-r from-green-100 to-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-green-500 transition" onclick="window.open('https://www.youtube.com/watch?v=KQbALHXCsrU&amp;t=1s', '_blank')">
+<h3 class="text-xl font-bold text-gray-800">قصة 2 — Prep 2</h3>
+<p class="text-sm text-gray-500 mt-2">اضغط لفتح الفيديو على اليوتيوب.</p>
+</div>
+</div>
+</section><section class="hidden animate-fade-in max-w-4xl mx-auto" id="watch-story-prep3">
+<div class="mb-6 flex justify-between items-center">
+<button class="text-gray-600 hover:text-gray-900 font-bold flex items-center gap-2" onclick="closeStoryWatch()">🔙 العودة لقسم القصة</button>
+<h2 class="text-2xl font-bold text-green-800">مشاهدة القصة — الصف الثالث الإعدادي</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="cursor-pointer bg-gradient-to-r from-yellow-100 to-white p-6 rounded-2xl shadow hover:shadow-lg border-l-8 border-yellow-500 transition" onclick="window.open('https://www.youtube.com/watch?v=1ugfrv8Lo-c&amp;list=PLqtLu2sdLGcXc-uXeSo7TACdaSQ3x6uTI&amp;index=7', '_blank')">
+<h3 class="text-xl font-bold text-gray-800">قصة — Prep 3</h3>
+<p class="text-sm text-gray-500 mt-2">اضغط لفتح الفيديو على اليوتيوب (الصف الثالث الإعدادي).</p>
+</div>
+</div>
+</section>
 </main>
-
 <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
-    <p>Mr. Alaa El-Naggar — English Platform</p>
-    <p class="mt-1 dir-ltr font-mono">01500073600</p>
+<p>Mr. Alaa El-Naggar — English Platform</p>
+<p class="mt-1 dir-ltr font-mono">01500073600</p>
 </footer>
-
 <script>
     // --- 1. NEW GRAMMAR REVISION DATABASE (Unit 1-6 from PDF) ---
     const grammarDb = [
@@ -894,7 +897,14 @@
         currentSection = sec;
         document.getElementById('section-select').classList.add('hidden');
 
-        // NEW: Grammar Revision Logic
+        if(sec === 'story') { 
+            // MODIFIED: Let all grades go to the model section for story, 
+            // the video link will be injected there.
+            // showStoryWatch(currentGrade); 
+            // return; 
+        }
+
+// NEW: Grammar Revision Logic
         if(sec === 'grammar_rev') {
             if(currentGrade !== 3) {
                 showModal("info", "عفواً (Sorry)", "هذا المحتوى متاح حالياً للصف الثالث الإعدادي فقط.<br>Coming Soon for Prep " + currentGrade, [
@@ -917,7 +927,8 @@
         }
 
         // Logic: Standard Content for Prep 1 & 2 (Placeholder)
-        if(currentGrade !== 3) {
+        // MODIFIED: Allow 'story' to pass through for Prep 1 & 2
+        if(currentGrade !== 3 && sec !== 'story') {
              document.getElementById('subject-title').innerText = sec.toUpperCase();
              document.getElementById('subject-sub').innerText = "Coming Soon for Prep " + currentGrade;
              const grid = document.getElementById('model-grid');
@@ -968,6 +979,26 @@
         document.getElementById('subject-sub').innerText = "اختر النموذج للبدء:";
         const grid = document.getElementById('model-grid');
         grid.innerHTML = '';
+
+        // MODIFIED: Inject Watch Story Button if the section is Story
+        if(key === 'story') {
+             const vidBtn = document.createElement('button');
+             vidBtn.className = "bg-green-50 p-6 rounded-2xl shadow-sm border-2 border-green-500 hover:bg-green-100 font-bold text-lg h-32 flex flex-col items-center justify-center transition w-full md:col-span-3 mb-4";
+             vidBtn.innerHTML = `<span class="text-3xl mb-2">🎬</span> مشاهدة فيديو القصة (Watch Video)`;
+             vidBtn.onclick = () => openStoryWatch('prep' + currentGrade);
+             grid.appendChild(vidBtn);
+        }
+        
+        // MODIFIED: Remove models for Prep 1 & 2 in Story section ONLY
+        if (key === 'story' && (currentGrade === 1 || currentGrade === 2)) {
+            const soonDiv = document.createElement('div');
+            soonDiv.className = "col-span-1 md:col-span-3 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center text-gray-400 font-bold text-xl";
+            soonDiv.innerHTML = "نماذج الامتحانات جاري تجهيزها...<br><span class='en-font text-lg mt-2 block'>Questions Coming Soon</span>";
+            grid.appendChild(soonDiv);
+            document.getElementById("mobile-back-btn").classList.add("hidden");
+            return;
+        }
+
         for(let i=1; i<=data.models; i++){
             const btn = document.createElement('button');
             btn.className = `bg-white p-6 rounded-2xl shadow-sm border-l-8 ${data.color} hover:shadow-lg font-bold text-lg h-32 flex flex-col items-center justify-center transition transform hover:-translate-y-1`;
@@ -1486,6 +1517,57 @@
         document.getElementById('intro-overlay').classList.add('hidden');
     }
 
+
+    // --- START: Story Watch helpers (added) ---
+    function showStoryWatch(grade){
+        // hide others
+        document.getElementById('model-section').classList.add('hidden');
+        document.getElementById('section-select').classList.add('hidden');
+        document.getElementById('grammar-hub').classList.add('hidden');
+        document.getElementById('watch-story-prep1').classList.add('hidden');
+        document.getElementById('watch-story-prep2').classList.add('hidden');
+        if(grade === 'prep1'){
+            document.getElementById('watch-story-prep1').classList.remove('hidden');
+        } else if(grade === 'prep2'){
+            document.getElementById('watch-story-prep2').classList.remove('hidden');
+        } else if(grade === 'prep3'){
+            document.getElementById('watch-story-prep3').classList.remove('hidden');
+        } else {
+            // Fallback: show models
+            document.getElementById('model-section').classList.remove('hidden');
+        }
+        document.getElementById("mobile-back-btn").classList.remove("hidden");
+    }
+
+    function closeStoryWatch(){
+        document.querySelectorAll('#watch-story-prep1, #watch-story-prep2, #watch-story-prep3').forEach(el=>el.classList.add('hidden'));
+        // MODIFIED: Return to model section instead of main menu
+        document.getElementById('model-section')?.classList.remove('hidden');
+        window.scrollTo({top:0, behavior:'smooth'});
+    }
+    // --- END: Story Watch helpers ---
+
 </script>
+
+<script>
+function openStoryWatch(grade){
+    // hide main sections
+    document.querySelectorAll('#watch-story-prep1, #watch-story-prep2, #watch-story-prep3').forEach(el=>el.classList.add('hidden'));
+    if(grade === 'prep1'){
+        document.getElementById('watch-story-prep1').classList.remove('hidden');
+    } else if(grade === 'prep2'){
+        document.getElementById('watch-story-prep2').classList.remove('hidden');
+    } else if(grade === 'prep3'){
+        document.getElementById('watch-story-prep3').classList.remove('hidden');
+    }
+    // hide other main sections for clarity
+    document.getElementById('section-select')?.classList.add('hidden');
+    document.getElementById('home-section')?.classList.add('hidden');
+    document.getElementById('model-section')?.classList.add('hidden'); // Also hide the models section when watching
+    // scroll into view
+    document.getElementById('watch-story-prep1')?.scrollIntoView({behavior:'smooth'});
+}
+</script>
+
 </body>
 </html>
