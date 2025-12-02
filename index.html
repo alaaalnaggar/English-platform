@@ -264,15 +264,21 @@
 <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
 <p>Mr. Alaa El-Naggar — English Platform</p>
 <p class="mt-1 dir-ltr font-mono">01500073600</p>
+<!-- Visitor Counter -->
+<div class="mt-3 flex justify-center items-center gap-2">
+    <span class="text-green-500">👥 Visitors:</span>
+    <span id="visitor-count-display" class="font-mono text-white font-bold bg-gray-800 px-2 py-1 rounded">Loading...</span>
+</div>
 </footer>
 <script>
-    // --- 1. NEW GRAMMAR REVISION DATABASE (Unit 1-6 from PDF) ---
+    // --- 1. NEW GRAMMAR REVISION DATABASE (Unit 1-6) ---
     const grammarDb = [
         {
             unit: 1,
             title: "Unit 1: Present Perfect (المضارع التام)",
             desc: "have/has + P.P., Since, For, Just, Already, Yet",
             color: "from-blue-500 to-blue-700",
+            videoUrl: "https://www.youtube.com/watch?v=SOjYLXqm3Xg&list=PLqtqcszY5183E0kszAOTkJY2rqQ-EpKDg&index=2&t=255s&pp=iAQB",
             slides: [
                 { type: "rule", title: "Present Perfect Formation", content: "<ul><li>I/We/You/They + <b>have ('ve)</b> + P.P</li><li>He/She/It + <b>has ('s)</b> + P.P</li><li><b>Negative:</b> haven't / hasn't + P.P</li></ul><div class='bg-blue-50 p-4 rounded-xl mt-4 text-left en-font'>• I have written the email.<br>• She has cooked lunch.<br>• They haven't mended the car.</div>" },
                 { type: "rule", title: "Keywords: Just & Already", content: "<p>تأتي <b>Just / Already</b> في الجملة المثبتة بين have/has والتصريف الثالث.</p><div class='bg-yellow-50 p-4 rounded-xl mt-4 text-left en-font'>• He has <b>just</b> eaten lunch.<br>• She has <b>already</b> washed the dishes.</div><p class='mt-4 text-red-600 font-bold'>ملاحظة:</p><p>يمكن أن تأتي Already في آخر الجملة المثبتة أو السؤال للتعجب.</p><div class='text-left en-font mt-2'>• Have you finished already? Amazing!</div>" },
@@ -296,6 +302,7 @@
             title: "Unit 2: Third Conditional (If الحالة الثالثة)",
             desc: "If + Past Perfect -> Would have + P.P.",
             color: "from-green-500 to-green-700",
+            videoUrl: "https://www.youtube.com/watch?v=Y7Uo4i0BAtU&list=PLqtqcszY5183E0kszAOTkJY2rqQ-EpKDg&index=3&t=5s&pp=iAQB",
             slides: [
                 { type: "rule", title: "Form (التكوين)", content: "<h3 class='text-xl font-bold text-center en-font mb-4'>If + Past Perfect (had+pp), <br>Subject + would have + P.P</h3><div class='bg-green-50 p-4 rounded text-left en-font'>• If he <b>had arrived</b> early, he <b>would have caught</b> the bus.<br>• She <b>would have succeeded</b> if she <b>had studied</b> well.</div>" },
                 { type: "rule", title: "Uses of 'Had'", content: "<p>لاحظ استخدام <b>had had</b>:</p><p>الأولى فعل مساعد، والثانية تصريف ثالث (بمعنى يملك/يتناول).</p><div class='bg-yellow-50 p-3 rounded mt-2 text-left en-font'>If I <b>had had</b> money, I would have bought a car.</div>" },
@@ -313,6 +320,7 @@
             title: "Unit 3: Future Forms",
             desc: "Will + Inf, Passive Future",
             color: "from-purple-500 to-purple-700",
+            videoUrl: "https://www.youtube.com/watch?v=wpFflf1fsVo&list=PLqtqcszY5183E0kszAOTkJY2rqQ-EpKDg&index=5&t=312s&pp=iAQB0gcJCRUKAYcqIYzv",
             slides: [
                 { type: "rule", title: "Future Simple (Active)", content: "<h3 class='text-center font-bold en-font'>Subject + will / won't + Infinitive</h3><div class='text-left en-font mt-4'>• They will buy the car.<br>• They won't buy the car.</div>" },
                 { type: "rule", title: "Future Simple (Passive)", content: "<h3 class='text-center font-bold en-font'>Object + will be + P.P</h3><div class='bg-purple-50 p-4 rounded text-left en-font mt-4'>• The car <b>will be bought</b> by them.<br>• The homework <b>will be finished</b> soon.</div>" }
@@ -328,6 +336,7 @@
             title: "Unit 4: Modals & Contrast",
             desc: "Must, Should, Ability, Although/While",
             color: "from-pink-500 to-pink-700",
+            videoUrl: "https://www.youtube.com/watch?v=AOeg1-JjcuY&list=PLqtqcszY5183E0kszAOTkJY2rqQ-EpKDg&index=6&t=4s&pp=iAQB",
             slides: [
                 { type: "rule", title: "Necessity & Advice", content: "<ul class='space-y-2 text-sm'><li><b>Must:</b> الضرورة (It is necessary).</li><li><b>Mustn't:</b> التحريم (It is forbidden/banned).</li><li><b>Should:</b> النصيحة (I advise you / If I were you).</li></ul>" },
                 { type: "rule", title: "Ability (القدرة)", content: "<ul class='space-y-2 text-sm'><li><b>Can + Inf</b> = am/is/are able to + Inf</li><li><b>Can</b> = am/is/are capable of + v-ing</li></ul>" },
@@ -344,6 +353,7 @@
             title: "Unit 5: Imperatives & Sequence",
             desc: "Do/Don't, First, Next, Finally",
             color: "from-orange-500 to-orange-700",
+            videoUrl: "", // Coming soon
             slides: [
                 { type: "rule", title: "Imperatives (الأمر)", content: "<p><b>Affirmative:</b> المصدر (Open the door) أو Always + المصدر.</p><p><b>Negative:</b> Don't + المصدر أو Never + المصدر.</p>" },
                 { type: "rule", title: "Sequence Words", content: "<ul class='list-disc pr-5'><li><b>Start:</b> First, To begin with.</li><li><b>Middle:</b> Next, Then, After that.</li><li><b>End:</b> Finally, Lastly.</li></ul>" }
@@ -359,6 +369,7 @@
             title: "Unit 6: Reported Speech",
             desc: "Statement transformation, Tense changes",
             color: "from-teal-500 to-teal-700",
+            videoUrl: "", // Coming soon
             slides: [
                 { type: "rule", title: "Reporting Verbs", content: "<ul class='en-font text-left space-y-2'><li>Say → Say</li><li>Say to → Tell</li><li>Said → Said</li><li>Said to → Told</li></ul>" },
                 { type: "rule", title: "Tense Changes", content: "<p>نحول الزمن للماضي (Backshift):</p><ul class='en-font text-left text-sm bg-gray-50 p-3'><li>Present Simple → Past Simple</li><li>Present Continuous → Past Continuous</li><li>Will → Would</li><li>Can → Could</li></ul>" },
@@ -450,7 +461,7 @@
         { q:"Being honest and ... helps to strengthen the bond.", type:"mcq", opts:["supportive","discouraging","setback","naughty"], ans:"respectful" },
         { q:"The best way to ... problems is through calm discussion.", type:"mcq", opts:["rise","increase","resolve","reconnect"], ans:"resolve" },
         { q:"... is failure to understand correctly.", type:"mcq", opts:["Misunderstanding","Misuse","Mislead","Mass media"], ans:"Misunderstanding" },
-        { q:"... is a relationship or link between people.", type:"mcq", opts:["Correction","Connection","Collection","Action"], ans:"Connection" },
+        { q:"... is a relationship or link between people.", type:"mcq", opts:["Connection","Correction","Collection","Action"], ans:"Connection" },
         { q:"A ... is a strong connection between people.", type:"mcq", opts:["bold","bald","bond","band"], ans:"bond" },
         { q:"To ... is to share thoughts, feelings or ideas.", type:"mcq", opts:["communicate","allow","let","join"], ans:"communicate" },
         { q:"To ... is to find a solution to a problem.", type:"mcq", opts:["resolve","salute","say","tell"], ans:"resolve" },
@@ -542,7 +553,7 @@
         { q:"Creativity is important in ...", type:"mcq", opts:["resign","design","desert","risk"], ans:"design" },
         { q:"Designers think ... the function of things.", type:"mcq", opts:["in","on","about","off"], ans:"about" },
         { q:"The word job is a synonym to ...", type:"mcq", opts:["interaction","function","fact","reaction"], ans:"function" },
-        { q:"Students put books in their ...", type:"mcq", opts:["package","suitcases","backpacks","backs"], ans:"backpacks" },
+        { q:"Students put books in their ...", type:"mcq", opts:["package","suitcases","backs","backpacks"], ans:"backpacks" },
         { q:"What ... are you? I am 75 kg.", type:"mcq", opts:["height","weight","much","heavy"], ans:"weight" },
         { q:"Designing includes style and ...", type:"mcq", opts:["safety","insecurity","danger","risk"], ans:"safety" },
         { q:"Design thinking means caring ... people.", type:"mcq", opts:["of","with","in","about"], ans:"about" },
@@ -561,7 +572,7 @@
         { q:"... is the science of farming.", type:"mcq", opts:["Industry","Agriculture","Engineering","Medicine"], ans:"Agriculture" },
         { q:"... means working hard at something.", type:"mcq", opts:["Developed","Deduction","Dedicated","Danger"], ans:"Dedicated" },
         { q:"... is to suggest many ideas quickly.", type:"mcq", opts:["Think","Brain","Mind","Brainstorm"], ans:"Brainstorm" },
-        { q:"A ... is similar to a friend.", type:"mcq", opts:["body","lady","rude","buddy"], ans:"buddy" },
+        { q:"A ... is a similar to a friend.", type:"mcq", opts:["body","lady","rude","buddy"], ans:"buddy" },
         { q:"Her drawings ... others to add art.", type:"mcq", opts:["inspired","sent","discouraged","refused"], ans:"inspired" },
         { q:"Being honest helps people ... you.", type:"mcq", opts:["confuse","doubts","trust","disagree"], ans:"trust" },
         { q:"After the long day, he decided to ... the job.", type:"mcq", opts:["join","quit","enjoy","build"], ans:"quit" },
@@ -822,7 +833,7 @@
                 {en: "When the crow opened her beak to sing, the cheese fell.", ar: "عندما فتحت الغراب منقارها لتغني، سقطت الجبنة."},
                 {en: "The fox ran away with it.", ar: "هرب الثعلب بها."},
                 {en: "This fable shows us that we should be careful with flattery.", ar: "تظهر لنا هذه الخرافة أنه يجب أن نحذر من المديح الزائف."},
-                {en: "Sometimes people use nice words just to get what they want.", ar: "أحياناً يستخدم الناس كلمات لطيفة فقط للحصول على ما يريدون."}
+                {en: "أحياناً يستخدم الناس كلمات لطيفة فقط للحصول على ما يريدون."}
             ]
         },
         { 
@@ -859,6 +870,12 @@
     let userAnswers = {};
     let currentUnitIndex = 0;
     let currentSlideIndex = 0;
+    
+    // Global tracking variables for report
+    let studentName = "";
+    let mistakesLog = [];
+    let currentModel = 0;
+    let currentScore = 0;
 
     // --- 3. NAVIGATION LOGIC ---
     function selectGrade(g){
@@ -896,13 +913,6 @@
     function selectSection(sec){
         currentSection = sec;
         document.getElementById('section-select').classList.add('hidden');
-
-        if(sec === 'story') { 
-            // MODIFIED: Let all grades go to the model section for story, 
-            // the video link will be injected there.
-            // showStoryWatch(currentGrade); 
-            // return; 
-        }
 
 // NEW: Grammar Revision Logic
         if(sec === 'grammar_rev') {
@@ -1018,11 +1028,28 @@
         grammarDb.forEach((u, idx) => {
             const card = document.createElement('div');
             card.className = `bg-gradient-to-br ${u.color} text-white rounded-3xl p-6 shadow-lg hover:scale-105 transition cursor-pointer relative overflow-hidden`;
+            
+            // Logic for video button status
+            const hasVideo = u.videoUrl && u.videoUrl.length > 0;
+            const videoBtnClass = hasVideo 
+                ? "bg-red-600 hover:bg-red-700 text-white" 
+                : "bg-gray-400/50 cursor-not-allowed text-gray-200";
+            const videoBtnText = hasVideo ? "Watch Video 📺" : "Coming Soon ⏳";
+            const videoAction = hasVideo ? `window.open('${u.videoUrl}', '_blank'); event.stopPropagation();` : `event.stopPropagation();`;
+
             card.innerHTML = `
-                <div class="relative z-10">
+                <div class="relative z-10 flex flex-col h-full">
                     <h3 class="text-2xl font-bold mb-2">${u.title}</h3>
-                    <p class="text-white/80 text-sm font-medium en-font leading-relaxed">${u.desc}</p>
-                    <button class="mt-4 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg font-bold text-sm backdrop-blur-sm transition">Start Lesson ▶</button>
+                    <p class="text-white/80 text-sm font-medium en-font leading-relaxed mb-4">${u.desc}</p>
+                    
+                    <div class="mt-auto flex gap-2">
+                        <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg font-bold text-sm backdrop-blur-sm transition flex-1">
+                            Start Lesson ▶
+                        </button>
+                        <button onclick="${videoAction}" class="${videoBtnClass} px-4 py-2 rounded-lg font-bold text-sm backdrop-blur-sm transition flex-1 border border-white/10 shadow-lg">
+                            ${videoBtnText}
+                        </button>
+                    </div>
                 </div>
                 <div class="absolute -bottom-4 -right-4 text-9xl opacity-10">📖</div>
             `;
@@ -1091,6 +1118,7 @@
         const unit = grammarDb[currentUnitIndex];
         currentQuestions = unit.questions; // Using the new questions structure
         userAnswers = {};
+        currentModel = "Grammar Practice - " + unit.title;
 
         document.getElementById('lesson-viewer').classList.add('hidden');
         document.getElementById('quiz-section').classList.remove('hidden');
@@ -1148,6 +1176,7 @@
     // --- 6. STANDARD EXAM LOGIC ---
     function startQuizForSubject(subKey, modelNum){
         currentSubjectKey = subKey;
+        currentModel = modelNum;
         currentQuestions = db[subKey].questions.filter(q => q.m === modelNum);
         
         if(currentQuestions.length === 0) {
@@ -1222,48 +1251,140 @@
         });
     }
 
+    function normalizeAnswer(str) {
+        if (!str) return "";
+        return str.toLowerCase().trim().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+    }
+
     function finishQuiz() {
         let score = 0;
         const total = currentQuestions.length;
+        mistakesLog = []; // Reset mistakes log
         
-        function normalizeAnswer(str) {
-            return str ? str.toLowerCase().trim().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ") : "";
-        }
+        const list = document.getElementById('questions-list');
+        const questionElements = list.children; // Assuming simple 1-to-1 mapping
 
         currentQuestions.forEach((q, idx) => {
-            let uAns = userAnswers[idx];
+            const item = questionElements[idx];
+            let userAns = userAnswers[idx];
+            let isCorrect = false;
+
+            // Remove any old feedback
+            const existingFeedback = item.querySelector('.feedback-card');
+            if(existingFeedback) existingFeedback.remove();
+
             if(q.type === 'mcq') {
-                if(uAns === q.ans) score++;
+                if(userAns === q.ans) isCorrect = true;
             } else {
-                // Check normalization
-                if(normalizeAnswer(uAns) === normalizeAnswer(q.ans)) {
-                    score++;
-                } else if (uAns && q.ans.toLowerCase().includes(uAns.toLowerCase().trim().substring(0, 5)) && uAns.length > 4) {
-                    // Fallback for partial matches in long sentences (optional safety net)
-                    score++;
+                const normUser = normalizeAnswer(userAns);
+                const normCorrect = normalizeAnswer(q.ans);
+                
+                if(normUser === normCorrect) {
+                    isCorrect = true;
+                } else if (userAns && q.ans.toLowerCase().includes(userAns.toLowerCase().trim().substring(0, 5)) && userAns.length > 4) {
+                    isCorrect = true;
                 }
+            }
+
+            if(isCorrect) {
+                score++;
+                item.classList.remove('bg-gray-50', 'border-gray-200');
+                item.classList.add('bg-green-50', 'border-green-500');
+            } else {
+                item.classList.remove('bg-gray-50', 'border-gray-200');
+                item.classList.add('bg-red-50', 'border-red-500');
+                
+                // Add to log
+                mistakesLog.push({
+                    q: q.q,
+                    studentAns: userAns || "No Answer",
+                    correctAns: q.ans
+                });
+
+                // Show Correct Answer Card
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = "feedback-card mt-4 p-4 bg-white border-l-4 border-green-500 shadow-sm rounded-r-lg animate-fade-in";
+                feedbackDiv.innerHTML = `
+                    <div class="text-sm text-gray-500 font-bold uppercase mb-1">Correct Answer:</div>
+                    <div class="text-lg text-green-700 font-bold en-font">${q.ans}</div>
+                `;
+                item.appendChild(feedbackDiv);
             }
         });
 
+        currentScore = score; // Global store
+
         const pct = (score/total)*100;
         let type = pct > 50 ? "success" : "error";
-        let title = pct > 50 ? "Excellent Work!" : "Good Effort!";
+        let title = "";
+        
+        if(pct === 100) {
+            title = "🌟 Excellent!";
+        } else if (pct >= 75) {
+            title = "👍 Good job!";
+        } else {
+            title = "💪 Keep practicing!";
+        }
+
         let msg = `Your Score: <span class="text-3xl font-bold block mt-2">${score} / ${total}</span>`;
         
-        let actions = [];
-        // Determine where to go back based on context (Quiz Section visibility vs Grammar Hub)
-        if(!document.getElementById('grammar-hub').classList.contains('hidden') || document.getElementById('model-section').classList.contains('hidden')) {
-             actions = [
-                {text: "العودة للدروس", action: "closeModal(); openGrammarHub(); document.getElementById('quiz-section').classList.add('hidden');"}
-             ];
-        } else {
-             actions = [
-                {text: "العودة للقائمة", action: "backToModels()"},
-                {text: "الرئيسية", action: "goToHome()"}
-            ];
-        }
+        // Custom Modal Content with WhatsApp
+        const modal = document.getElementById('universal-modal');
+        const content = document.getElementById('modal-content');
+        modal.classList.remove('hidden');
         
-        showModal(type, title, msg, actions);
+        let colorClass = pct >= 50 ? 'text-green-600' : 'text-orange-500';
+        
+        content.innerHTML = `
+            <div class="text-5xl mb-4 animate-bounce">${pct === 100 ? '🏆' : (pct >= 50 ? '✅' : '📝')}</div>
+            <h2 class="text-3xl font-extrabold ${colorClass} mb-2 en-font">${title}</h2>
+            <div class="text-gray-500 mb-6 font-semibold leading-relaxed">${msg}</div>
+            
+            <hr class="border-gray-200 my-4"/>
+            
+            <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mb-4 text-left">
+                <label class="block text-xs font-bold text-blue-800 mb-2 uppercase">Send Report to Teacher 📱</label>
+                <input type="tel" id="teacherNumber" class="w-full p-3 rounded-lg border border-gray-300 mb-2 text-center text-lg en-font focus:outline-none focus:border-blue-500" placeholder="01xxxxxxxxx" value="01500073600">
+                <button onclick="sendToTeacher()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg shadow transition flex items-center justify-center gap-2">
+                    <span>Send Report via WhatsApp</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="closeModal()" class="col-span-1 bg-gray-100 hover:bg-gray-200 text-gray-800 py-3 rounded-xl font-bold shadow-sm border border-gray-200">Review Answers</button>
+                <button onclick="closeModal(); backToModels()" class="col-span-1 bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-xl font-bold shadow-sm">Back to List</button>
+            </div>
+        `;
+    }
+
+    function sendToTeacher() {
+        let phone = document.getElementById('teacherNumber').value;
+        
+        if(!phone || phone.length < 10) {
+            alert("يرجى كتابة رقم موبايل صحيح");
+            return;
+        }
+
+        phone = phone.replace(/\D/g,'');
+        if(phone.startsWith('0')) {
+            phone = phone.substring(1);
+        }
+        let finalNumber = "20" + phone;
+
+        let mistakesText = "";
+        if(mistakesLog.length > 0) {
+            mistakesText = "\n\n🔻 *قائمة الأخطاء:*";
+            mistakesLog.forEach((mistake, i) => {
+                mistakesText += `\n\n${i+1}- Question: ${mistake.q}\n❌ Your Answer: ${mistake.studentAns}\n✅ Correct: ${mistake.correctAns}`;
+            });
+        } else {
+            mistakesText = "\n\n✨ إجابة نموذجية (Full Marks)!";
+        }
+
+        const message = `السلام عليكم يا مستر 👋\n\nأنا الطالب: ${studentName}\nExam: ${currentSubjectKey} - Model ${currentModel}\nانتهيت من الحل\n\nدرجتي هي: ${currentScore}${mistakesText}`;
+        
+        const link = `https://wa.me/${finalNumber}?text=${encodeURIComponent(message)}`;
+        window.open(link, '_blank');
     }
 
     // --- 7. SKILLS MENU ---
@@ -1511,6 +1632,8 @@
     }
     
     function startFromIntro(){
+        const nameInput = document.getElementById('student-name-intro');
+        studentName = nameInput.value.trim() || "Student";
         document.getElementById('intro-overlay').classList.add('hidden');
     }
     function skipIntro(){
@@ -1567,6 +1690,66 @@ function openStoryWatch(grade){
     // scroll into view
     document.getElementById('watch-story-prep1')?.scrollIntoView({behavior:'smooth'});
 }
+</script>
+
+<!-- Firebase Visitor Counter Script -->
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+    import { getAuth, signInAnonymously, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+    import { getFirestore, doc, onSnapshot, setDoc, increment, collection } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+
+    // Check for Firebase config in environment
+    if (typeof __firebase_config !== 'undefined') {
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        async function initFirebase() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Reference to visitors counter
+                const statsRef = doc(db, 'artifacts', appId, 'public', 'data', 'site_stats', 'visitors');
+
+                // Listen for updates with Error Handling
+                onSnapshot(statsRef, (docSnap) => {
+                    const countDisplay = document.getElementById('visitor-count-display');
+                    if (docSnap.exists()) {
+                        countDisplay.innerText = (docSnap.data().count || 0).toLocaleString();
+                    } else {
+                        countDisplay.innerText = "0";
+                    }
+                }, (error) => {
+                    console.error("Snapshot Error:", error);
+                    document.getElementById('visitor-count-display').innerText = "---";
+                });
+
+                // Increment visit (unique per session)
+                const hasVisited = sessionStorage.getItem('site_visit_logged');
+                if (!hasVisited) {
+                    await setDoc(statsRef, {
+                        count: increment(1),
+                        last_updated: new Date().toISOString()
+                    }, { merge: true });
+                    sessionStorage.setItem('site_visit_logged', 'true');
+                }
+            } catch (error) {
+                console.error("Firebase Init Error:", error);
+                document.getElementById('visitor-count-display').innerText = "Offline";
+            }
+        }
+
+        initFirebase();
+    } else {
+        console.warn("Firebase config not found. Visitor counter disabled.");
+        document.getElementById('visitor-count-display').innerText = "Demo Mode";
+    }
 </script>
 
 </body>
